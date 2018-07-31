@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lanou.mapper.ActivityMapper" >
+  <resultMap id="BaseResultMap" type="com.lanou.model.Activity" >
+    <id column="active_id" property="activeId" jdbcType="INTEGER" />
+    <result column="active_name" property="activeName" jdbcType="VARCHAR" />
+    <result column="active_discount" property="activeDiscount" jdbcType="VARCHAR" />
+    <result column="active_postage" property="activePostage" jdbcType="VARCHAR" />
+    <result column="active_coverUrl" property="activeCoverurl" jdbcType="VARCHAR" />
+    <result column="active_brandStory" property="activeBrandstory" jdbcType="VARCHAR" />
+    <result column="active_primaryTitle" property="activePrimarytitle" jdbcType="VARCHAR" />
+    <result column="active_endTime" property="activeEndtime" jdbcType="INTEGER" />
+    <result column="creat_time" property="creatTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="active_thirdTitle" property="activeThirdtitle" jdbcType="VARCHAR" />
+    <result column="active_brand" property="activeBrand" jdbcType="VARCHAR" />
+    <result column="active_status" property="activeStatus" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    active_id, active_name, active_discount, active_postage, active_coverUrl, active_brandStory, 
+    active_primaryTitle, active_endTime, creat_time, update_time, active_thirdTitle, 
+    active_brand, active_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ml_activity
+    where active_id = #{activeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ml_activity
+    where active_id = #{activeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lanou.model.Activity" >
+    insert into ml_activity (active_id, active_name, active_discount, 
+      active_postage, active_coverUrl, active_brandStory, 
+      active_primaryTitle, active_endTime, creat_time, 
+      update_time, active_thirdTitle, active_brand, 
+      active_status)
+    values (#{activeId,jdbcType=INTEGER}, #{activeName,jdbcType=VARCHAR}, #{activeDiscount,jdbcType=VARCHAR}, 
+      #{activePostage,jdbcType=VARCHAR}, #{activeCoverurl,jdbcType=VARCHAR}, #{activeBrandstory,jdbcType=VARCHAR}, 
+      #{activePrimarytitle,jdbcType=VARCHAR}, #{activeEndtime,jdbcType=INTEGER}, #{creatTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{activeThirdtitle,jdbcType=VARCHAR}, #{activeBrand,jdbcType=VARCHAR}, 
+      #{activeStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lanou.model.Activity" >
+    insert into ml_activity
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="activeId != null" >
+        active_id,
+      </if>
+      <if test="activeName != null" >
+        active_name,
+      </if>
+      <if test="activeDiscount != null" >
+        active_discount,
+      </if>
+      <if test="activePostage != null" >
+        active_postage,
+      </if>
+      <if test="activeCoverurl != null" >
+        active_coverUrl,
+      </if>
+      <if test="activeBrandstory != null" >
+        active_brandStory,
+      </if>
+      <if test="activePrimarytitle != null" >
+        active_primaryTitle,
+      </if>
+      <if test="activeEndtime != null" >
+        active_endTime,
+      </if>
+      <if test="creatTime != null" >
+        creat_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="activeThirdtitle != null" >
+        active_thirdTitle,
+      </if>
+      <if test="activeBrand != null" >
+        active_brand,
+      </if>
+      <if test="activeStatus != null" >
+        active_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="activeId != null" >
+        #{activeId,jdbcType=INTEGER},
+      </if>
+      <if test="activeName != null" >
+        #{activeName,jdbcType=VARCHAR},
+      </if>
+      <if test="activeDiscount != null" >
+        #{activeDiscount,jdbcType=VARCHAR},
+      </if>
+      <if test="activePostage != null" >
+        #{activePostage,jdbcType=VARCHAR},
+      </if>
+      <if test="activeCoverurl != null" >
+        #{activeCoverurl,jdbcType=VARCHAR},
+      </if>
+      <if test="activeBrandstory != null" >
+        #{activeBrandstory,jdbcType=VARCHAR},
+      </if>
+      <if test="activePrimarytitle != null" >
+        #{activePrimarytitle,jdbcType=VARCHAR},
+      </if>
+      <if test="activeEndtime != null" >
+        #{activeEndtime,jdbcType=INTEGER},
+      </if>
+      <if test="creatTime != null" >
+        #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activeThirdtitle != null" >
+        #{activeThirdtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="activeBrand != null" >
+        #{activeBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="activeStatus != null" >
+        #{activeStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lanou.model.Activity" >
+    update ml_activity
+    <set >
+      <if test="activeName != null" >
+        active_name = #{activeName,jdbcType=VARCHAR},
+      </if>
+      <if test="activeDiscount != null" >
+        active_discount = #{activeDiscount,jdbcType=VARCHAR},
+      </if>
+      <if test="activePostage != null" >
+        active_postage = #{activePostage,jdbcType=VARCHAR},
+      </if>
+      <if test="activeCoverurl != null" >
+        active_coverUrl = #{activeCoverurl,jdbcType=VARCHAR},
+      </if>
+      <if test="activeBrandstory != null" >
+        active_brandStory = #{activeBrandstory,jdbcType=VARCHAR},
+      </if>
+      <if test="activePrimarytitle != null" >
+        active_primaryTitle = #{activePrimarytitle,jdbcType=VARCHAR},
+      </if>
+      <if test="activeEndtime != null" >
+        active_endTime = #{activeEndtime,jdbcType=INTEGER},
+      </if>
+      <if test="creatTime != null" >
+        creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activeThirdtitle != null" >
+        active_thirdTitle = #{activeThirdtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="activeBrand != null" >
+        active_brand = #{activeBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="activeStatus != null" >
+        active_status = #{activeStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where active_id = #{activeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lanou.model.Activity" >
+    update ml_activity
+    set active_name = #{activeName,jdbcType=VARCHAR},
+      active_discount = #{activeDiscount,jdbcType=VARCHAR},
+      active_postage = #{activePostage,jdbcType=VARCHAR},
+      active_coverUrl = #{activeCoverurl,jdbcType=VARCHAR},
+      active_brandStory = #{activeBrandstory,jdbcType=VARCHAR},
+      active_primaryTitle = #{activePrimarytitle,jdbcType=VARCHAR},
+      active_endTime = #{activeEndtime,jdbcType=INTEGER},
+      creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      active_thirdTitle = #{activeThirdtitle,jdbcType=VARCHAR},
+      active_brand = #{activeBrand,jdbcType=VARCHAR},
+      active_status = #{activeStatus,jdbcType=INTEGER}
+    where active_id = #{activeId,jdbcType=INTEGER}
+  </update>
+  <!--根据activePrimaryTitle活动名字查询-->
+  <select id="findByActivePrimaryTitle" resultMap="BaseResultMap" parameterType="String">
+    select * from ml_activity where
+     active_primaryTitle = #{activePrimarytitle,jdbcType=VARCHAR}
+  </select>
+</mapper>
