@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -86,11 +87,14 @@ public class UserController {
     @ResponseBody
     public ServerResponse findUser(User user, String inputCode, HttpServletRequest request, HttpSession session) {
         // 打印输入的验证码
-        System.out.println(inputCode);
+        System.out.println("inputCode:"+inputCode);
         // 获得存储在session中的验证码
-        String codeValue = (String) session.getAttribute(Constants.KAPTCHA_SESSION_KEY);
+//        String codeValue = (String) session.getAttribute(Constants.KAPTCHA_SESSION_KEY);
+
+        String codeValue = (String) request.getServletContext().getAttribute(Constants.KAPTCHA_SESSION_KEY);
+
         // 打印取出的验证码瞧一瞧
-        System.out.println(codeValue);
+        System.out.println("codeValue:"+codeValue);
 
         // 查询手机号是否存在
         User user1 = userRegisterService.findUser(user);
@@ -102,6 +106,7 @@ public class UserController {
                 return ServerResponse.createSuccess("注册成功", user);
             }
             return ServerResponse.createError(100, "注册失败，未知错误！");
+
         } else if (user1 != null && inputCode.equals(codeValue)) {
             return ServerResponse.createError(100, "注册失败，手机号已存在！");
         } else if (user1 == null && !inputCode.equals(codeValue)) {

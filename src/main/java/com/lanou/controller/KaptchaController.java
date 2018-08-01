@@ -2,11 +2,14 @@ package com.lanou.controller;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import javafx.application.Application;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,13 +31,14 @@ public class KaptchaController {
     @RequestMapping
     public ModelAndView getKaptchaImage(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
-        String code = (String) session.getAttribute(Constants.KAPTCHA_SESSION_KEY);
-        System.out.println("******************验证码是: " + code + "******************");
+//        String code = (String) session.getAttribute(Constants.KAPTCHA_SESSION_KEY);
+//        System.out.println("******************验证码是: " + code + "******************");
 
         response.setDateHeader("Expires", 0);
 
         // Set standard HTTP/1.1 no-cache headers.
-        response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+        response.setHeader("Cache-Control",
+                  "no-store, no-cache, must-revalidate");
 
         // Set IE extended HTTP/1.1 no-cache headers (use addHeader).
         response.addHeader("Cache-Control", "post-check=0, pre-check=0");
@@ -48,8 +52,13 @@ public class KaptchaController {
         // create the text for the image
         String capText = captchaProducer.createText();
 
-        // store the text in the session
-        session.setAttribute(Constants.KAPTCHA_SESSION_KEY, capText);
+        // store the text in the session 存储
+        request.getServletContext().setAttribute(Constants.KAPTCHA_SESSION_KEY, capText);
+
+//        session.setAttribute(Constants.KAPTCHA_SESSION_KEY, capText);
+//        String code2 = (String) session.getAttribute(Constants.KAPTCHA_SESSION_KEY);
+        String code2 = (String) request.getServletContext().getAttribute(Constants.KAPTCHA_SESSION_KEY);
+        System.out.println("******************验证码是: " + code2 + "******************");
 
         // create the image with the text
         BufferedImage bi = captchaProducer.createImage(capText);
