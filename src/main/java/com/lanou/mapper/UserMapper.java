@@ -16,6 +16,7 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
     // 登陆查询
     User loginByPhone(User user);
+    ////机会根据韩国和合格合格v
 
     // 注册查询
     User findUser(User user);
