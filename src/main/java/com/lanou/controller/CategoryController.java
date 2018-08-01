@@ -27,10 +27,7 @@ public class CategoryController {
         if (categoryList.size() == 0) {
             return ServerResponse.createError(100, "查询失败无记录");
         } else {
-
-            PageInfo pageInfo = new PageInfo(categoryList);
-            return ServerResponse.createSuccess("查询成功", pageInfo);
-
+            return ServerResponse.createSuccess("查询成功", categoryList);
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.lanou.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Activity {
     private Integer activeId;
@@ -27,6 +28,8 @@ public class Activity {
 
     private String activeBrand;
 
+    private List<Goods> goodsList;
+
     public Activity() {
         super();
     }
@@ -46,6 +49,7 @@ public class Activity {
                 ", activeStatus=" + activeStatus +
                 ", creatTime=" + creatTime +
                 ", activeBrand='" + activeBrand + '\'' +
+                ", goodsList=" + goodsList +
                 '}';
     }
 
@@ -144,4 +148,14 @@ public class Activity {
     public void setActiveBrand(String activeBrand) {
         this.activeBrand = activeBrand == null ? null : activeBrand.trim();
     }
+
+    public List<Goods> getGoodsList() {
+        return goodsList;
+    }
+
+    public void setGoodsList(List<Goods> goodsList) {
+        this.goodsList = goodsList;
+    }
+
+
 }
