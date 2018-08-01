@@ -1,5 +1,7 @@
 package com.lanou.model;
 
+import java.util.Date;
+
 public class User {
     private Integer userId;
 
@@ -10,6 +12,12 @@ public class User {
     private String userPhone;
 
     private String userMail;
+
+    private String userPic;
+
+    private Date userBirthday;
+
+    private String userGender;
 
     public Integer getUserId() {
         return userId;
@@ -51,6 +59,34 @@ public class User {
         this.userMail = userMail == null ? null : userMail.trim();
     }
 
+    public String getUserPic() {
+        return userPic;
+    }
+
+    public void setUserPic(String userPic) {
+        this.userPic = userPic == null ? null : userPic.trim();
+    }
+
+    public Date getUserBirthday() {
+        return userBirthday;
+    }
+
+    public void setUserBirthday(Date userBirthday) {
+        this.userBirthday = userBirthday;
+    }
+
+    public String getUserGender() {
+        return userGender;
+    }
+
+    public void setUserGender(String userGender) {
+        this.userGender = userGender == null ? null : userGender.trim();
+    }
+
+    public User() {
+        super();
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -59,6 +95,9 @@ public class User {
                 ", userPassword='" + userPassword + '\'' +
                 ", userPhone='" + userPhone + '\'' +
                 ", userMail='" + userMail + '\'' +
+                ", userPic='" + userPic + '\'' +
+                ", userBirthday=" + userBirthday +
+                ", userGender='" + userGender + '\'' +
                 '}';
     }
 }

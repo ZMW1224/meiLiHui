@@ -14,7 +14,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
-
     // 登陆查询
     User loginByPhone(User user);
 
