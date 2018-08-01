@@ -1,176 +1,153 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.lanou.mapper.ActivityMapper" >
-  <resultMap id="BaseResultMap" type="com.lanou.model.Activity" >
-    <id column="active_id" property="activeId" jdbcType="INTEGER" />
-    <result column="active_name" property="activeName" jdbcType="VARCHAR" />
-    <result column="active_discount" property="activeDiscount" jdbcType="VARCHAR" />
-    <result column="active_postage" property="activePostage" jdbcType="VARCHAR" />
-    <result column="active_coverUrl" property="activeCoverurl" jdbcType="VARCHAR" />
-    <result column="active_brandStory" property="activeBrandstory" jdbcType="VARCHAR" />
-    <result column="active_primaryTitle" property="activePrimarytitle" jdbcType="VARCHAR" />
-    <result column="active_endTime" property="activeEndtime" jdbcType="INTEGER" />
-    <result column="creat_time" property="creatTime" jdbcType="TIMESTAMP" />
-    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
-    <result column="active_thirdTitle" property="activeThirdtitle" jdbcType="VARCHAR" />
-    <result column="active_brand" property="activeBrand" jdbcType="VARCHAR" />
-    <result column="active_status" property="activeStatus" jdbcType="INTEGER" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanou.mapper.ActivityMapper">
+  <resultMap id="BaseResultMap" type="com.lanou.model.Activity">
+    <id column="active_id" jdbcType="INTEGER" property="activeId" />
+    <result column="active_name" jdbcType="VARCHAR" property="activeName" />
+    <result column="active_discount" jdbcType="VARCHAR" property="activeDiscount" />
+    <result column="active_postage" jdbcType="VARCHAR" property="activePostage" />
+    <result column="active_coverUrl" jdbcType="VARCHAR" property="activeCoverurl" />
+    <result column="active_brandStory" jdbcType="VARCHAR" property="activeBrandstory" />
+    <result column="active_primaryTitle" jdbcType="VARCHAR" property="activePrimarytitle" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="active_endTime" jdbcType="INTEGER" property="activeEndtime" />
+    <result column="active_status" jdbcType="INTEGER" property="activeStatus" />
+    <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime" />
   </resultMap>
-  <sql id="Base_Column_List" >
-    active_id, active_name, active_discount, active_postage, active_coverUrl, active_brandStory, 
-    active_primaryTitle, active_endTime, creat_time, update_time, active_thirdTitle, 
-    active_brand, active_status
+  <sql id="Base_Column_List">
+    active_id, active_name, active_discount, active_postage, active_coverUrl, active_brandStory,
+    active_primaryTitle, update_time, active_endTime, active_status, creat_time
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
     <include refid="Base_Column_List" />
     from ml_activity
     where active_id = #{activeId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from ml_activity
     where active_id = #{activeId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.lanou.model.Activity" >
-    insert into ml_activity (active_id, active_name, active_discount, 
-      active_postage, active_coverUrl, active_brandStory, 
-      active_primaryTitle, active_endTime, creat_time, 
-      update_time, active_thirdTitle, active_brand, 
-      active_status)
-    values (#{activeId,jdbcType=INTEGER}, #{activeName,jdbcType=VARCHAR}, #{activeDiscount,jdbcType=VARCHAR}, 
-      #{activePostage,jdbcType=VARCHAR}, #{activeCoverurl,jdbcType=VARCHAR}, #{activeBrandstory,jdbcType=VARCHAR}, 
-      #{activePrimarytitle,jdbcType=VARCHAR}, #{activeEndtime,jdbcType=INTEGER}, #{creatTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{activeThirdtitle,jdbcType=VARCHAR}, #{activeBrand,jdbcType=VARCHAR}, 
-      #{activeStatus,jdbcType=INTEGER})
+  <insert id="insert" parameterType="com.lanou.model.Activity">
+    insert into ml_activity (active_id, active_name, active_discount,
+      active_postage, active_coverUrl, active_brandStory,
+      active_primaryTitle, update_time, active_endTime,
+      active_status, creat_time)
+    values (#{activeId,jdbcType=INTEGER}, #{activeName,jdbcType=VARCHAR}, #{activeDiscount,jdbcType=VARCHAR},
+      #{activePostage,jdbcType=VARCHAR}, #{activeCoverurl,jdbcType=VARCHAR}, #{activeBrandstory,jdbcType=VARCHAR},
+      #{activePrimarytitle,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{activeEndtime,jdbcType=INTEGER},
+      #{activeStatus,jdbcType=INTEGER}, #{creatTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.lanou.model.Activity" >
+  <insert id="insertSelective" parameterType="com.lanou.model.Activity">
     insert into ml_activity
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="activeId != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="activeId != null">
         active_id,
       </if>
-      <if test="activeName != null" >
+      <if test="activeName != null">
         active_name,
       </if>
-      <if test="activeDiscount != null" >
+      <if test="activeDiscount != null">
         active_discount,
       </if>
-      <if test="activePostage != null" >
+      <if test="activePostage != null">
         active_postage,
       </if>
-      <if test="activeCoverurl != null" >
+      <if test="activeCoverurl != null">
         active_coverUrl,
       </if>
-      <if test="activeBrandstory != null" >
+      <if test="activeBrandstory != null">
         active_brandStory,
       </if>
-      <if test="activePrimarytitle != null" >
+      <if test="activePrimarytitle != null">
         active_primaryTitle,
       </if>
-      <if test="activeEndtime != null" >
-        active_endTime,
-      </if>
-      <if test="creatTime != null" >
-        creat_time,
-      </if>
-      <if test="updateTime != null" >
+      <if test="updateTime != null">
         update_time,
       </if>
-      <if test="activeThirdtitle != null" >
-        active_thirdTitle,
+      <if test="activeEndtime != null">
+        active_endTime,
       </if>
-      <if test="activeBrand != null" >
-        active_brand,
-      </if>
-      <if test="activeStatus != null" >
+      <if test="activeStatus != null">
         active_status,
       </if>
+      <if test="creatTime != null">
+        creat_time,
+      </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="activeId != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="activeId != null">
         #{activeId,jdbcType=INTEGER},
       </if>
-      <if test="activeName != null" >
+      <if test="activeName != null">
         #{activeName,jdbcType=VARCHAR},
       </if>
-      <if test="activeDiscount != null" >
+      <if test="activeDiscount != null">
         #{activeDiscount,jdbcType=VARCHAR},
       </if>
-      <if test="activePostage != null" >
+      <if test="activePostage != null">
         #{activePostage,jdbcType=VARCHAR},
       </if>
-      <if test="activeCoverurl != null" >
+      <if test="activeCoverurl != null">
         #{activeCoverurl,jdbcType=VARCHAR},
       </if>
-      <if test="activeBrandstory != null" >
+      <if test="activeBrandstory != null">
         #{activeBrandstory,jdbcType=VARCHAR},
       </if>
-      <if test="activePrimarytitle != null" >
+      <if test="activePrimarytitle != null">
         #{activePrimarytitle,jdbcType=VARCHAR},
       </if>
-      <if test="activeEndtime != null" >
-        #{activeEndtime,jdbcType=INTEGER},
-      </if>
-      <if test="creatTime != null" >
-        #{creatTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null" >
+      <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="activeThirdtitle != null" >
-        #{activeThirdtitle,jdbcType=VARCHAR},
+      <if test="activeEndtime != null">
+        #{activeEndtime,jdbcType=INTEGER},
       </if>
-      <if test="activeBrand != null" >
-        #{activeBrand,jdbcType=VARCHAR},
-      </if>
-      <if test="activeStatus != null" >
+      <if test="activeStatus != null">
         #{activeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="creatTime != null">
+        #{creatTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lanou.model.Activity" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.lanou.model.Activity">
     update ml_activity
-    <set >
-      <if test="activeName != null" >
+    <set>
+      <if test="activeName != null">
         active_name = #{activeName,jdbcType=VARCHAR},
       </if>
-      <if test="activeDiscount != null" >
+      <if test="activeDiscount != null">
         active_discount = #{activeDiscount,jdbcType=VARCHAR},
       </if>
-      <if test="activePostage != null" >
+      <if test="activePostage != null">
         active_postage = #{activePostage,jdbcType=VARCHAR},
       </if>
-      <if test="activeCoverurl != null" >
+      <if test="activeCoverurl != null">
         active_coverUrl = #{activeCoverurl,jdbcType=VARCHAR},
       </if>
-      <if test="activeBrandstory != null" >
+      <if test="activeBrandstory != null">
         active_brandStory = #{activeBrandstory,jdbcType=VARCHAR},
       </if>
-      <if test="activePrimarytitle != null" >
+      <if test="activePrimarytitle != null">
         active_primaryTitle = #{activePrimarytitle,jdbcType=VARCHAR},
       </if>
-      <if test="activeEndtime != null" >
-        active_endTime = #{activeEndtime,jdbcType=INTEGER},
-      </if>
-      <if test="creatTime != null" >
-        creat_time = #{creatTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null" >
+      <if test="updateTime != null">
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="activeThirdtitle != null" >
-        active_thirdTitle = #{activeThirdtitle,jdbcType=VARCHAR},
+      <if test="activeEndtime != null">
+        active_endTime = #{activeEndtime,jdbcType=INTEGER},
       </if>
-      <if test="activeBrand != null" >
-        active_brand = #{activeBrand,jdbcType=VARCHAR},
-      </if>
-      <if test="activeStatus != null" >
+      <if test="activeStatus != null">
         active_status = #{activeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="creatTime != null">
+        creat_time = #{creatTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where active_id = #{activeId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.lanou.model.Activity" >
+  <update id="updateByPrimaryKey" parameterType="com.lanou.model.Activity">
     update ml_activity
     set active_name = #{activeName,jdbcType=VARCHAR},
       active_discount = #{activeDiscount,jdbcType=VARCHAR},
@@ -178,16 +155,15 @@
       active_coverUrl = #{activeCoverurl,jdbcType=VARCHAR},
       active_brandStory = #{activeBrandstory,jdbcType=VARCHAR},
       active_primaryTitle = #{activePrimarytitle,jdbcType=VARCHAR},
-      active_endTime = #{activeEndtime,jdbcType=INTEGER},
-      creat_time = #{creatTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
-      active_thirdTitle = #{activeThirdtitle,jdbcType=VARCHAR},
-      active_brand = #{activeBrand,jdbcType=VARCHAR},
-      active_status = #{activeStatus,jdbcType=INTEGER}
+      active_endTime = #{activeEndtime,jdbcType=INTEGER},
+      active_status = #{activeStatus,jdbcType=INTEGER},
+      creat_time = #{creatTime,jdbcType=TIMESTAMP}
     where active_id = #{activeId,jdbcType=INTEGER}
   </update>
+
   <!--根据activePrimaryTitle活动名字查询-->
-  <select id="findByActivePrimaryTitle" resultMap="BaseResultMap" parameterType="String">
+  <select id="findByActivePrimaryTitle" parameterType="String" resultMap="BaseResultMap">
     select * from ml_activity where
      active_primaryTitle = #{activePrimarytitle,jdbcType=VARCHAR}
   </select>

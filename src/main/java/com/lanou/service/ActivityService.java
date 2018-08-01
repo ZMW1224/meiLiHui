@@ -5,5 +5,5 @@ import com.lanou.model.Activity;
 import java.util.List;
 
 public interface ActivityService {
-    public List<Activity> findByActivePrimaryTitle(String string);
+     List<Activity> findByActivePrimaryTitle(String string);
 }

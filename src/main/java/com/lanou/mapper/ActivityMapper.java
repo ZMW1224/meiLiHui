@@ -16,8 +16,8 @@ public interface ActivityMapper {
     int updateByPrimaryKeySelective(Activity record);
 
     int updateByPrimaryKey(Activity record);
-
     //根据活动名字查询活动页面
+
     List<Activity> findByActivePrimaryTitle(String string);
 
 }

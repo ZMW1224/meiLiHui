@@ -17,20 +17,33 @@ public class Activity {
 
     private String activePrimarytitle;
 
-    private Integer activeEndtime;
-
-    private Date creatTime;
-
     private Date updateTime;
 
-    private String activeThirdtitle;
-
-    private String activeBrand;
+    private Integer activeEndtime;
 
     private Integer activeStatus;
 
+    private Date creatTime;
+
     public Activity() {
         super();
+    }
+
+    @Override
+    public String toString() {
+        return "Activity{" +
+                "activeId=" + activeId +
+                ", activeName='" + activeName + '\'' +
+                ", activeDiscount='" + activeDiscount + '\'' +
+                ", activePostage='" + activePostage + '\'' +
+                ", activeCoverurl='" + activeCoverurl + '\'' +
+                ", activeBrandstory='" + activeBrandstory + '\'' +
+                ", activePrimarytitle='" + activePrimarytitle + '\'' +
+                ", updateTime=" + updateTime +
+                ", activeEndtime=" + activeEndtime +
+                ", activeStatus=" + activeStatus +
+                ", creatTime=" + creatTime +
+                '}';
     }
 
     public Integer getActiveId() {
@@ -89,22 +102,6 @@ public class Activity {
         this.activePrimarytitle = activePrimarytitle == null ? null : activePrimarytitle.trim();
     }
 
-    public Integer getActiveEndtime() {
-        return activeEndtime;
-    }
-
-    public void setActiveEndtime(Integer activeEndtime) {
-        this.activeEndtime = activeEndtime;
-    }
-
-    public Date getCreatTime() {
-        return creatTime;
-    }
-
-    public void setCreatTime(Date creatTime) {
-        this.creatTime = creatTime;
-    }
-
     public Date getUpdateTime() {
         return updateTime;
     }
@@ -113,20 +110,12 @@ public class Activity {
         this.updateTime = updateTime;
     }
 
-    public String getActiveThirdtitle() {
-        return activeThirdtitle;
+    public Integer getActiveEndtime() {
+        return activeEndtime;
     }
 
-    public void setActiveThirdtitle(String activeThirdtitle) {
-        this.activeThirdtitle = activeThirdtitle == null ? null : activeThirdtitle.trim();
-    }
-
-    public String getActiveBrand() {
-        return activeBrand;
-    }
-
-    public void setActiveBrand(String activeBrand) {
-        this.activeBrand = activeBrand == null ? null : activeBrand.trim();
+    public void setActiveEndtime(Integer activeEndtime) {
+        this.activeEndtime = activeEndtime;
     }
 
     public Integer getActiveStatus() {
@@ -137,22 +126,11 @@ public class Activity {
         this.activeStatus = activeStatus;
     }
 
-    @Override
-    public String toString() {
-        return "Activity{" +
-                "activeId=" + activeId +
-                ", activeName='" + activeName + '\'' +
-                ", activeDiscount='" + activeDiscount + '\'' +
-                ", activePostage='" + activePostage + '\'' +
-                ", activeCoverurl='" + activeCoverurl + '\'' +
-                ", activeBrandstory='" + activeBrandstory + '\'' +
-                ", activePrimarytitle='" + activePrimarytitle + '\'' +
-                ", activeEndtime=" + activeEndtime +
-                ", creatTime=" + creatTime +
-                ", updateTime=" + updateTime +
-                ", activeThirdtitle='" + activeThirdtitle + '\'' +
-                ", activeBrand='" + activeBrand + '\'' +
-                ", activeStatus=" + activeStatus +
-                '}';
+    public Date getCreatTime() {
+        return creatTime;
+    }
+
+    public void setCreatTime(Date creatTime) {
+        this.creatTime = creatTime;
     }
 }
