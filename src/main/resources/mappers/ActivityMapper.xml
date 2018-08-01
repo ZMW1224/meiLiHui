@@ -13,13 +13,14 @@
     <result column="active_endTime" jdbcType="INTEGER" property="activeEndtime" />
     <result column="active_status" jdbcType="INTEGER" property="activeStatus" />
     <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime" />
+    <result column="active_brand" jdbcType="VARCHAR" property="activeBrand" />
   </resultMap>
   <sql id="Base_Column_List">
-    active_id, active_name, active_discount, active_postage, active_coverUrl, active_brandStory,
-    active_primaryTitle, update_time, active_endTime, active_status, creat_time
+    active_id, active_name, active_discount, active_postage, active_coverUrl, active_brandStory, 
+    active_primaryTitle, update_time, active_endTime, active_status, creat_time, active_brand
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select
+    select 
     <include refid="Base_Column_List" />
     from ml_activity
     where active_id = #{activeId,jdbcType=INTEGER}
@@ -29,14 +30,16 @@
     where active_id = #{activeId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.lanou.model.Activity">
-    insert into ml_activity (active_id, active_name, active_discount,
-      active_postage, active_coverUrl, active_brandStory,
-      active_primaryTitle, update_time, active_endTime,
-      active_status, creat_time)
-    values (#{activeId,jdbcType=INTEGER}, #{activeName,jdbcType=VARCHAR}, #{activeDiscount,jdbcType=VARCHAR},
-      #{activePostage,jdbcType=VARCHAR}, #{activeCoverurl,jdbcType=VARCHAR}, #{activeBrandstory,jdbcType=VARCHAR},
-      #{activePrimarytitle,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{activeEndtime,jdbcType=INTEGER},
-      #{activeStatus,jdbcType=INTEGER}, #{creatTime,jdbcType=TIMESTAMP})
+    insert into ml_activity (active_id, active_name, active_discount, 
+      active_postage, active_coverUrl, active_brandStory, 
+      active_primaryTitle, update_time, active_endTime, 
+      active_status, creat_time, active_brand
+      )
+    values (#{activeId,jdbcType=INTEGER}, #{activeName,jdbcType=VARCHAR}, #{activeDiscount,jdbcType=VARCHAR}, 
+      #{activePostage,jdbcType=VARCHAR}, #{activeCoverurl,jdbcType=VARCHAR}, #{activeBrandstory,jdbcType=VARCHAR}, 
+      #{activePrimarytitle,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{activeEndtime,jdbcType=INTEGER}, 
+      #{activeStatus,jdbcType=INTEGER}, #{creatTime,jdbcType=TIMESTAMP}, #{activeBrand,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.lanou.model.Activity">
     insert into ml_activity
@@ -74,6 +77,9 @@
       <if test="creatTime != null">
         creat_time,
       </if>
+      <if test="activeBrand != null">
+        active_brand,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="activeId != null">
@@ -108,6 +114,9 @@
       </if>
       <if test="creatTime != null">
         #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="activeBrand != null">
+        #{activeBrand,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -144,6 +153,9 @@
       <if test="creatTime != null">
         creat_time = #{creatTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="activeBrand != null">
+        active_brand = #{activeBrand,jdbcType=VARCHAR},
+      </if>
     </set>
     where active_id = #{activeId,jdbcType=INTEGER}
   </update>
@@ -158,10 +170,10 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       active_endTime = #{activeEndtime,jdbcType=INTEGER},
       active_status = #{activeStatus,jdbcType=INTEGER},
-      creat_time = #{creatTime,jdbcType=TIMESTAMP}
+      creat_time = #{creatTime,jdbcType=TIMESTAMP},
+      active_brand = #{activeBrand,jdbcType=VARCHAR}
     where active_id = #{activeId,jdbcType=INTEGER}
   </update>
-
   <!--根据activePrimaryTitle活动名字查询-->
   <select id="findByActivePrimaryTitle" parameterType="String" resultMap="BaseResultMap">
     select * from ml_activity where

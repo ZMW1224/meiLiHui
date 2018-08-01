@@ -25,6 +25,8 @@ public class Activity {
 
     private Date creatTime;
 
+    private String activeBrand;
+
     public Activity() {
         super();
     }
@@ -43,6 +45,7 @@ public class Activity {
                 ", activeEndtime=" + activeEndtime +
                 ", activeStatus=" + activeStatus +
                 ", creatTime=" + creatTime +
+                ", activeBrand='" + activeBrand + '\'' +
                 '}';
     }
 
@@ -132,5 +135,13 @@ public class Activity {
 
     public void setCreatTime(Date creatTime) {
         this.creatTime = creatTime;
+    }
+
+    public String getActiveBrand() {
+        return activeBrand;
+    }
+
+    public void setActiveBrand(String activeBrand) {
+        this.activeBrand = activeBrand == null ? null : activeBrand.trim();
     }
 }
