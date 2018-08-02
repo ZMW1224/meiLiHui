@@ -89,7 +89,7 @@
     pic8, pic9, pic10, pic11, pic12, pic_priceIndication, pic_afterSales, creat_time, 
     update_time, goods_activityId
   </sql>
-    <!--根据条件查询goods的集合 包含activityId-->
+    <!--1.根据条件查询goods的集合 包含activityId-->
     <select id="findActivityToGoodsById" resultMap="activityToGoods" parameterType="Goods">
         select * FROM
         ml_activity a, ml_goods g
@@ -102,8 +102,10 @@
         </if>
         a.active_id = g.goods_activityId AND g.goods_activityId = #{goodsActivityid}
     </select>
-    <!--不包含activityId-->
-    <select id="findGoodsWithoutActivity" resultMap="BaseResultMap" parameterType="Goods">
+    <!--2.不包含activityId，却包含模糊查询条件
+        模糊查询条件规定四种
+        品牌、一级标题、二级标题、三级标题 任选其一-->
+    <select id="findGoodsWithoutActivity" resultMap="BaseResultMap" parameterType="Map">
         select * FROM
         ml_goods g
         where
@@ -113,8 +115,70 @@
         <if test="goodsThirdtitle != null">
             g.goods_thirdTitle = #{goodsThirdtitle} AND
         </if>
-        1 = 1
+        (g.goods_brand LIKE
+        <bind name="likename" value="'%'+keyword+'%'" />
+        #{likename} OR
+        g.goods_primaryTitle LIKE
+        <bind name="likename" value="'%'+keyword+'%'" />
+        #{likename} OR
+        g.goods_secondTitle LIKE
+        <bind name="likename" value="'%'+keyword+'%'" />
+        #{likename} OR
+        g.goods_thirdTitle LIKE
+        <bind name="likename" value="'%'+keyword+'%'" />
+        #{likename})
     </select>
+    <!--3.不包含activity，不包含模糊查询条件
+          大前提 一级标题+二级标题
+          可选勾选条件为 品牌+三级标题-->
+    <select id="findGoodsByGuide" resultMap="BaseResultMap" parameterType="Goods">
+        select * FROM
+        ml_goods
+        where
+        <if test="goodsBrand != null">
+            goods_brand = #{goodsBrand} AND
+        </if>
+        <if test="goodsThirdtitle != null">
+            goods_thirdTitle = #{goodsThirdtitle} AND
+        </if>
+        goods_primaryTitle = #{goodsPrimarytitle} AND
+        goods_secondTitle = #{goodsSecondtitle}
+    </select>
+
+
+    <!--根据所属活动的商品，查询总共有哪些 品牌or三级标题-->
+    <select id="findBrandOrThirdTitleByGoods" resultType="String" parameterType="Map">
+        SELECT DISTINCT ${brand_or_thirdTitle}
+        FROM ml_goods WHERE
+        goods_activityId = #{goodsActivityid}
+    </select>
+    <!--搜索框 模糊查询-->
+    <select id="findGoodsBySearchBox" resultMap="BaseResultMap" parameterType="String">
+        SELECT * from ml_goods g
+        WHERE
+        g.goods_brand LIKE
+        <bind name="likename" value="'%'+_parameter+'%'" />
+        #{likename} OR
+        g.goods_primaryTitle LIKE
+        <bind name="likename" value="'%'+_parameter+'%'" />
+        #{likename} OR
+        g.goods_secondTitle LIKE
+        <bind name="likename" value="'%'+_parameter+'%'" />
+        #{likename} OR
+        g.goods_thirdTitle LIKE
+        <bind name="likename" value="'%'+_parameter+'%'" />
+        #{likename}
+    </select>
+
+    <!--<select id="selectByLikeName" resultType="User">-->
+        <!--select-->
+        <!--<include refid="baseUserInfo"></include>-->
+        <!--from users-->
+        <!--where			&lt;!&ndash; bind做拼接 &ndash;&gt;-->
+        <!--user_names like-->
+        <!--<bind name="likename" value="'%'+user_names+'%'" />-->
+        <!--#{likename}-->
+    <!--</select>-->
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select

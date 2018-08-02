@@ -19,7 +19,13 @@ public interface GoodsMapper {
 
     int updateByPrimaryKey(Goods record);
 
+    List<Goods> findGoodsBySearchBox(String keyword);
+
     Activity findActivityToGoodsById(Goods goods);
 
-    List<Goods> findGoodsWithoutActivity(Goods goods);
+    List<Goods> findGoodsWithoutActivity(Map map);
+
+    List<Goods> findGoodsByGuide(Goods goods);
+
+    List<Goods> findBrandOrThirdTitleByGoods(Map map);
 }
