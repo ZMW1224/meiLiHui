@@ -62,12 +62,7 @@
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
-<!-- -->
         <!-- 设置想要将哪个表生成对应的文件 -->
-<<<<<<< HEAD
         <table tableName="ml_size" domainObjectName="Size" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-=======
-        <table tableName="ml_shopCar" domainObjectName="ShopCar" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
->>>>>>> a23395242abf7572b09666739268569af5e4b092
     </context>
 </generatorConfiguration>
