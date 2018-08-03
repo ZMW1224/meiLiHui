@@ -2,6 +2,8 @@ package com.lanou.mapper;
 
 import com.lanou.model.User;
 
+import java.util.Map;
+
 public interface UserMapper {
     int deleteByPrimaryKey(Integer userId);
 
@@ -18,6 +20,6 @@ public interface UserMapper {
     User loginByPhone(User user);
     // 注册查询
     User findUser(User user);
-
-
+    // 修改密码
+    public int updateUserPwd(Map map);
 }
