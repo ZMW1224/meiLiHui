@@ -7,11 +7,13 @@ import com.lanou.service.UserLoginService;
 import com.lanou.service.UserRegisterService;
 import com.lanou.util.ServerResponse;
 import org.apache.ibatis.annotations.Param;
+import org.apache.taglibs.standard.tag.common.sql.DataSourceUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import javax.servlet.ServletContext;
@@ -19,18 +21,21 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @CrossOrigin
-@RequestMapping("user")
+@RequestMapping("/user")
 public class UserController {
     @Autowired
     private UserLoginService userLoginService;
     @Autowired
     private UserRegisterService userRegisterService;
 
-    // 手机登陆
+    // 用户登陆
     @RequestMapping("/loginByPhone")
     @ResponseBody
     public ServerResponse findUserByPhone(User user, @Param("auto") String auto, HttpServletResponse response, HttpServletRequest request) throws IOException {
@@ -83,18 +88,18 @@ public class UserController {
 //
 //    }
 
+
+    // 用户注册
     @RequestMapping("/registerUser")
     @ResponseBody
     public ServerResponse findUser(User user, String inputCode, HttpServletRequest request, HttpSession session) {
         // 打印输入的验证码
-        System.out.println("inputCode:"+inputCode);
+        System.out.println("inputCode:" + inputCode);
         // 获得存储在session中的验证码
-//        String codeValue = (String) session.getAttribute(Constants.KAPTCHA_SESSION_KEY);
-
+        // String codeValue = (String) session.getAttribute(Constants.KAPTCHA_SESSION_KEY);
         String codeValue = (String) request.getServletContext().getAttribute(Constants.KAPTCHA_SESSION_KEY);
-
         // 打印取出的验证码瞧一瞧
-        System.out.println("codeValue:"+codeValue);
+        System.out.println("codeValue:" + codeValue);
 
         // 查询手机号是否存在
         User user1 = userRegisterService.findUser(user);
@@ -116,4 +121,32 @@ public class UserController {
         }
 
     }
+
+    // 用户修改密码
+    @RequestMapping("/updateUserPwd")
+    @ResponseBody
+    public ServerResponse updateUserPwd(HttpServletRequest request, String inputPwd, String newPwd1, String newPwd2) {
+        // 获取session
+        HttpSession session = request.getSession();
+        // 取出当前用户
+        User currentUser = (User) session.getAttribute("user");
+        // 获取当前用户的密码
+        String currentUserPassword = currentUser.getUserPassword();
+        // 获取当前用户的手机号 作为修改密码的条件
+        String urrentUserPhone = currentUser.getUserPhone();
+        Map map = new HashMap();
+
+        if (currentUserPassword.equals(inputPwd) && newPwd1.equals(newPwd2)) {
+            map.put("newPwd", newPwd2);
+            map.put("userPhone", urrentUserPhone);
+            int i = userLoginService.updateUserPwd(map);
+            if (i > 0) {
+                return ServerResponse.createSuccess("修改成功", currentUser);
+            }
+        }
+        return ServerResponse.createError(100, "修改失败");
+    }
+
+
+
 }
