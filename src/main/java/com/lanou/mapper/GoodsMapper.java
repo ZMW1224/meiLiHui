@@ -28,4 +28,6 @@ public interface GoodsMapper {
     List<Goods> findGoodsByGuide(Goods goods);
 
     List<Goods> findBrandOrThirdTitleByGoods(Map map);
+
+    Goods findGoodsInfo(Goods goods);
 }

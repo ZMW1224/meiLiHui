@@ -193,4 +193,20 @@ public class GoodsController {
             return  ServerResponse.createError(100, "品牌查询数量为0");
         }
     }
+
+    /* goodsInfo页面
+    *
+    * */
+    @ResponseBody
+    @RequestMapping(value = "findGoodsInfo")
+    public ServerResponse findGoodsInfo(Goods goods){
+        System.out.println("goodsId:"+goods.getGoodsId());
+        Goods goodsInfo = goodsService.findGoodsInfo(goods);
+        System.out.println("goodsInfo："+goodsInfo);
+        if (goodsInfo != null){
+            // 不为null则查询成功，
+            return ServerResponse.createSuccess("查询成功", goodsInfo);
+        }
+        return ServerResponse.createError(100, "查询结果为空");
+    }
 }

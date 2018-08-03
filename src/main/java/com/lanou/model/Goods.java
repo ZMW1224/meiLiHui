@@ -1,6 +1,7 @@
 package com.lanou.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Goods {
     private Integer goodsId;
@@ -64,6 +65,8 @@ public class Goods {
     private Date updateTime;
 
     private Integer goodsActivityid;
+
+    private List<Size> sizes;
 
     public Integer getGoodsId() {
         return goodsId;
@@ -313,6 +316,14 @@ public class Goods {
         this.goodsActivityid = goodsActivityid;
     }
 
+    public List<Size> getSizes() {
+        return sizes;
+    }
+
+    public void setSizes(List<Size> sizes) {
+        this.sizes = sizes;
+    }
+
     public Goods() {
     }
 
@@ -350,6 +361,7 @@ public class Goods {
                 ", creatTime=" + creatTime +
                 ", updateTime=" + updateTime +
                 ", goodsActivityid=" + goodsActivityid +
+                ", sizes=" + sizes +
                 '}';
     }
 }

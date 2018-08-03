@@ -137,4 +137,12 @@
     select * from project_user
     where user_phone = #{userPhone,jdbcType=VARCHAR}
   </select>
+
+  <!-- 用户修改密码 -->
+  <update id="updateUserPwd" parameterType="Map">
+    update project_user
+    set user_password = #{newPwd}
+    where user_phone = #{userPhone}
+  </update>
+
 </mapper>

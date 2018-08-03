@@ -82,6 +82,48 @@
             <result column="goods_activityId" property="goodsActivityid" jdbcType="INTEGER"/>
         </collection>
     </resultMap>
+    <!--+++++++++++++++-->
+    <resultMap id="goodsToSize" type="com.lanou.model.Goods">
+        <id column="goods_id" property="goodsId" jdbcType="INTEGER"/>
+        <result column="goods_name" property="goodsName" jdbcType="VARCHAR"/>
+        <result column="goods_color" property="goodsColor" jdbcType="VARCHAR"/>
+        <result column="goods_brand" property="goodsBrand" jdbcType="VARCHAR"/>
+        <result column="goods_currentPrice" property="goodsCurrentprice" jdbcType="DECIMAL"/>
+        <result column="goods_beforePrice" property="goodsBeforeprice" jdbcType="DECIMAL"/>
+        <result column="goods_discount" property="goodsDiscount" jdbcType="VARCHAR"/>
+        <result column="goods_description" property="goodsDescription" jdbcType="VARCHAR"/>
+        <result column="goods_primaryTitle" property="goodsPrimarytitle" jdbcType="VARCHAR"/>
+        <result column="goods_secondTitle" property="goodsSecondtitle" jdbcType="VARCHAR"/>
+        <result column="goods_thirdTitle" property="goodsThirdtitle" jdbcType="VARCHAR"/>
+        <result column="pic1" property="pic1" jdbcType="VARCHAR"/>
+        <result column="pic2" property="pic2" jdbcType="VARCHAR"/>
+        <result column="pic3" property="pic3" jdbcType="VARCHAR"/>
+        <result column="pic4" property="pic4" jdbcType="VARCHAR"/>
+        <result column="pic_sizeInfo" property="picSizeinfo" jdbcType="VARCHAR"/>
+        <result column="pic_productInfo" property="picProductinfo" jdbcType="VARCHAR"/>
+        <result column="pic_baoYang" property="picBaoyang" jdbcType="VARCHAR"/>
+        <result column="pic5" property="pic5" jdbcType="VARCHAR"/>
+        <result column="pic6" property="pic6" jdbcType="VARCHAR"/>
+        <result column="pic7" property="pic7" jdbcType="VARCHAR"/>
+        <result column="pic8" property="pic8" jdbcType="VARCHAR"/>
+        <result column="pic9" property="pic9" jdbcType="VARCHAR"/>
+        <result column="pic10" property="pic10" jdbcType="VARCHAR"/>
+        <result column="pic11" property="pic11" jdbcType="VARCHAR"/>
+        <result column="pic12" property="pic12" jdbcType="VARCHAR"/>
+        <result column="pic_priceIndication" property="picPriceindication" jdbcType="VARCHAR"/>
+        <result column="pic_afterSales" property="picAftersales" jdbcType="VARCHAR"/>
+        <result column="creat_time" property="creatTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="goods_activityId" property="goodsActivityid" jdbcType="INTEGER"/>
+        <collection property="sizes" ofType="Size">
+            <id column="size_id" property="sizeId" jdbcType="INTEGER" />
+            <result column="size_name" property="sizeName" jdbcType="VARCHAR" />
+            <result column="goods_size_Id" property="goodsSizeId" jdbcType="INTEGER" />
+            <result column="goods_number" property="goodsNumber" jdbcType="VARCHAR" />
+            <result column="size_count" property="sizeCount" jdbcType="INTEGER" />
+            <result column="size_status" property="sizeStatus" jdbcType="INTEGER" />
+        </collection>
+    </resultMap>
     <sql id="Base_Column_List">
     goods_id, goods_name, goods_color, goods_brand, goods_currentPrice, goods_beforePrice, 
     goods_discount, goods_description, goods_primaryTitle, goods_secondTitle, goods_thirdTitle, 
@@ -169,16 +211,12 @@
         <bind name="likename" value="'%'+_parameter+'%'" />
         #{likename}
     </select>
-
-    <!--<select id="selectByLikeName" resultType="User">-->
-        <!--select-->
-        <!--<include refid="baseUserInfo"></include>-->
-        <!--from users-->
-        <!--where			&lt;!&ndash; bind做拼接 &ndash;&gt;-->
-        <!--user_names like-->
-        <!--<bind name="likename" value="'%'+user_names+'%'" />-->
-        <!--#{likename}-->
-    <!--</select>-->
+    <!--商品详情-->
+    <select id="findGoodsInfo" resultMap="goodsToSize" parameterType="Goods">
+        select * FROM ml_goods g
+        INNER JOIN ml_size s
+        on s.goods_size_Id=g.goods_id AND g.goods_id= #{goodsId}
+    </select>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lanou.mapper.ReceiverAdressMapper" >
+  <resultMap id="BaseResultMap" type="com.lanou.model.ReceiverAdress" >
+    <id column="receiver_id" property="receiverId" jdbcType="INTEGER" />
+    <result column="receiver_name" property="receiverName" jdbcType="VARCHAR" />
+    <result column="receiver_phone" property="receiverPhone" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="county" property="county" jdbcType="VARCHAR" />
+    <result column=" detailed_address" property="detailedAddress" jdbcType="VARCHAR" />
+    <result column="postal_code" property="postalCode" jdbcType="VARCHAR" />
+    <result column="user_receiver_id" property="userReceiverId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    receiver_id, receiver_name, receiver_phone, province, city, county, " detailed_address", 
+    postal_code, user_receiver_id, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ml_receiverAdress
+    where receiver_id = #{receiverId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ml_receiverAdress
+    where receiver_id = #{receiverId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lanou.model.ReceiverAdress" >
+    insert into ml_receiverAdress (receiver_id, receiver_name, receiver_phone, 
+      province, city, county, 
+      " detailed_address", postal_code, user_receiver_id, 
+      status)
+    values (#{receiverId,jdbcType=INTEGER}, #{receiverName,jdbcType=VARCHAR}, #{receiverPhone,jdbcType=VARCHAR}, 
+      #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, 
+      #{detailedAddress,jdbcType=VARCHAR}, #{postalCode,jdbcType=VARCHAR}, #{userReceiverId,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lanou.model.ReceiverAdress" >
+    insert into ml_receiverAdress
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="receiverId != null" >
+        receiver_id,
+      </if>
+      <if test="receiverName != null" >
+        receiver_name,
+      </if>
+      <if test="receiverPhone != null" >
+        receiver_phone,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="county != null" >
+        county,
+      </if>
+      <if test="detailedAddress != null" >
+        " detailed_address",
+      </if>
+      <if test="postalCode != null" >
+        postal_code,
+      </if>
+      <if test="userReceiverId != null" >
+        user_receiver_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="receiverId != null" >
+        #{receiverId,jdbcType=INTEGER},
+      </if>
+      <if test="receiverName != null" >
+        #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverPhone != null" >
+        #{receiverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null" >
+        #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="detailedAddress != null" >
+        #{detailedAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="postalCode != null" >
+        #{postalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userReceiverId != null" >
+        #{userReceiverId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lanou.model.ReceiverAdress" >
+    update ml_receiverAdress
+    <set >
+      <if test="receiverName != null" >
+        receiver_name = #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverPhone != null" >
+        receiver_phone = #{receiverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null" >
+        county = #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="detailedAddress != null" >
+        " detailed_address" = #{detailedAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="postalCode != null" >
+        postal_code = #{postalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userReceiverId != null" >
+        user_receiver_id = #{userReceiverId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where receiver_id = #{receiverId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lanou.model.ReceiverAdress" >
+    update ml_receiverAdress
+    set receiver_name = #{receiverName,jdbcType=VARCHAR},
+      receiver_phone = #{receiverPhone,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      county = #{county,jdbcType=VARCHAR},
+      " detailed_address" = #{detailedAddress,jdbcType=VARCHAR},
+      postal_code = #{postalCode,jdbcType=VARCHAR},
+      user_receiver_id = #{userReceiverId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER}
+    where receiver_id = #{receiverId,jdbcType=INTEGER}
+  </update>
+  <!-- 查询出status为1的地址 -->
+  <select id="selectStatus" parameterType="int">
+    select * from ml_receiverAdress r,project_user u where r.user_receiver_id=u.user_id and r.status = 1
+    and u.user_id = #{id}
+  </select>
+  <!-- 将查出status为1地址的status改为0 -->
+  <update id="updateStatusOnClick" parameterType="int">
+     update ml_receiverAdress r,project_user u set status = 0 where r.user_receiver_id=u.user_id and r.status = 1
+     and u.user_id = #{id}
+  </update>
+  <!-- 将当前地址设置为默认地址 -->
+  <update id="updateStatus" parameterType="int">
+     update ml_receiverAdress r,project_user u set status = 1 where r.user_receiver_id=u.user_id and r.status = 1
+     and u.user_id = #{id}
+  </update>
+</mapper>
