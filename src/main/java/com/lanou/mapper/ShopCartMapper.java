@@ -2,6 +2,7 @@ package com.lanou.mapper;
 
 import com.lanou.model.ShopCart;
 
+import java.util.List;
 import java.util.Map;
 
 public interface ShopCartMapper {
@@ -18,5 +19,7 @@ public interface ShopCartMapper {
     int updateByPrimaryKey(ShopCart record);
 
     // 添加商品
-    public int addGoodsToShopCart(Map map);
+    int addGoodsToShopCart(Map map);
+    // 查看购物车
+    List viewShopCart();
 }

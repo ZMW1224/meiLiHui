@@ -84,4 +84,25 @@
     insert into ml_shopCart (shopCart_size_id, purchase_quantity)
     values (#{sizeId}, #{quantity})
   </insert>
+  <!-- 查看购物车 -->
+  <resultMap id="resultMap" type="com.lanou.model.ShopCart" >
+  <result column="purchase_quantity" property="purchaseQuantity"/>
+    <collection property="goodsList" ofType="com.lanou.model.Goods">
+      <result property="pic1" column="pic1"/>
+      <result property="goodsBrand" column="goods_brand"/> 
+      <result property="goodsName" column="goods_name"/>
+      <result property="goodsColor" column="goods_color"/>
+      <result property="goodsCurrentprice" column="goods_currentPrice"/>
+        <collection property="sizes" ofType="com.lanou.model.Size">
+          <result property="sizeName" column="size_name"/>
+          <result property="sizeCount" column="size_count"/>
+
+        </collection>
+    </collection>
+  </resultMap>
+  <select id="viewShopCart" resultMap="resultMap">
+    select mg.pic1,mg.goods_brand,mg.goods_name,mg.goods_color,ms.size_name,ms.size_count,mg.goods_currentPrice,mc.purchase_quantity
+     from ml_goods mg,ml_size ms,ml_shopCart mc where mg.goods_id = ms.goods_size_id and ms.size_id=mc.shopCart_size_id
+
+  </select>
 </mapper>
