@@ -30,6 +30,6 @@ target/
 #system ignore
 .DS_Store
 Thumbs.db
-src/main/resources/generatorConfig.xml
+
 src/main/resources/generatorConfig.xml
 src/main/resources/db.properties

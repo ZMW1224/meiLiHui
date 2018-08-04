@@ -89,7 +89,7 @@
   <result column="purchase_quantity" property="purchaseQuantity"/>
     <collection property="goodsList" ofType="com.lanou.model.Goods">
       <result property="pic1" column="pic1"/>
-      <result property="goodsBrand" column="goods_brand"/> 
+      <result property="goodsBrand" column="goods_brand"/>
       <result property="goodsName" column="goods_name"/>
       <result property="goodsColor" column="goods_color"/>
       <result property="goodsCurrentprice" column="goods_currentPrice"/>
