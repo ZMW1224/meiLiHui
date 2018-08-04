@@ -6,6 +6,7 @@ import com.lanou.service.CategoryService;
 import com.lanou.util.ServerResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -14,6 +15,7 @@ import java.util.List;
 /**
  * Created by lanou on 2018/7/30.
  */
+@CrossOrigin
 @Controller
 public class CategoryController {
     @Autowired
@@ -23,7 +25,7 @@ public class CategoryController {
     @RequestMapping(value = "findByParentId")
     @ResponseBody
     public ServerResponse findByParentId(Integer id) {
-        List<Category> categoryList = categoryService.findByParentId(id);
+        List<Category> categoryList = categoryService.findByParentId(0);
         if (categoryList.size() == 0) {
             return ServerResponse.createError(100, "查询失败无记录");
         } else {

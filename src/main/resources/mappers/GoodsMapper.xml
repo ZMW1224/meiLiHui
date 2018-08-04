@@ -189,11 +189,31 @@
 
 
     <!--根据所属活动的商品，查询总共有哪些 品牌or三级标题-->
-    <select id="findBrandOrThirdTitleByGoods" resultType="String" parameterType="Map">
+    <!--1.只根据活动id 品牌or三级标题
+        2.只根据关键词 品牌or三级标题
+        3.只根据一级标题and二级标题 品牌or三级标题
+    -->
+    <select id="findBrandOrThirdTitleWithId" resultType="String" parameterType="Map">
         SELECT DISTINCT ${brand_or_thirdTitle}
         FROM ml_goods WHERE
         goods_activityId = #{goodsActivityid}
     </select>
+    <select id="findBrandOrThirdTitleWithKeyword" resultType="String" parameterType="Map">
+        SELECT DISTINCT ${brand_or_thirdTitle}
+        FROM ml_goods WHERE
+        goods_brand LIKE <bind name="likename" value="'%'+keyword+'%'" /> #{likename} OR
+        goods_primaryTitle LIKE <bind name="likename" value="'%'+keyword+'%'" /> #{likename} OR
+        goods_secondTitle LIKE <bind name="likename" value="'%'+keyword+'%'" /> #{likename} OR
+        goods_thirdTitle LIKE <bind name="likename" value="'%'+keyword+'%'" /> #{likename}
+    </select>
+    <select id="findBrandOrThirdTitleWithGuide" resultType="String" parameterType="Map">
+        SELECT DISTINCT ${brand_or_thirdTitle}
+        FROM ml_goods WHERE
+        goods_primaryTitle = #{goodsPrimarytitle} AND
+        goods_secondTitle = #{goodsSecondtitle}
+    </select>
+
+
     <!--搜索框 模糊查询-->
     <select id="findGoodsBySearchBox" resultMap="BaseResultMap" parameterType="String">
         SELECT * from ml_goods g

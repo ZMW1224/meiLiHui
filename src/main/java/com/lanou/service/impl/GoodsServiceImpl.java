@@ -44,11 +44,25 @@ public class GoodsServiceImpl implements GoodsService {
         return goodsList;
     }
 
-    // 根据所属活动的商品查询有哪些 品牌 or 三级标题
-    public List<Goods> findBrandOrThirdTitleByGoods(Map map){
-        List<Goods> thirdTitleList = goodsMapper.findBrandOrThirdTitleByGoods(map);
-        return thirdTitleList;
+    // 1/3 根据所属活动的商品查询有哪些 品牌 or 三级标题
+    public List<String> findBrandOrThirdTitleWithId(Map map){
+        List<String> list = goodsMapper.findBrandOrThirdTitleWithId(map);
+        return list;
     }
+
+    // 2/3 根据所属活动的商品查询有哪些 品牌 or 三级标题
+    public List<String> findBrandOrThirdTitleWithKeyword(Map map){
+        List<String> list = goodsMapper.findBrandOrThirdTitleWithKeyword(map);
+        return list;
+    }
+
+    // 3/3 根据所属活动的商品查询有哪些 品牌 or 三级标题
+    public List<String> findBrandOrThirdTitleWithGuide(Map map){
+        List<String> list = goodsMapper.findBrandOrThirdTitleWithGuide(map);
+        return list;
+    }
+
+
     // 浏览商品点击商品进入商品详情页面
     public Goods findGoodsInfo(Goods goods){
         Goods goodsInfo = goodsMapper.findGoodsInfo(goods);

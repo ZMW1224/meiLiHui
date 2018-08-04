@@ -25,8 +25,14 @@ public interface GoodsService {
     // 可选勾选条件为 品牌+三级标题
     public List<Goods> findGoodsByGuide(Goods goods);
 
-    // 根据所属活动的商品查询有哪些 品牌 or 三级标题
-    public List<Goods> findBrandOrThirdTitleByGoods(Map map);
+    // 1/3 根据所属活动的商品查询有哪些 品牌 or 三级标题
+    public List<String> findBrandOrThirdTitleWithId(Map map);
+
+    // 2/3 根据所属活动的商品查询有哪些 品牌 or 三级标题
+    public List<String> findBrandOrThirdTitleWithKeyword(Map map);
+
+    // 3/3 根据所属活动的商品查询有哪些 品牌 or 三级标题
+    public List<String> findBrandOrThirdTitleWithGuide(Map map);
 
     // 浏览商品点击商品进入商品详情页面
     public Goods findGoodsInfo(Goods goods);

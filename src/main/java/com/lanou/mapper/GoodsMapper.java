@@ -27,7 +27,13 @@ public interface GoodsMapper {
 
     List<Goods> findGoodsByGuide(Goods goods);
 
-    List<Goods> findBrandOrThirdTitleByGoods(Map map);
+
+    List<String> findBrandOrThirdTitleWithId(Map map);
+
+    List<String> findBrandOrThirdTitleWithKeyword(Map map);
+
+    List<String> findBrandOrThirdTitleWithGuide(Map map);
+
 
     Goods findGoodsInfo(Goods goods);
 }
