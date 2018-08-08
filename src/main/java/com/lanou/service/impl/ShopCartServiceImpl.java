@@ -2,6 +2,7 @@ package com.lanou.service.impl;
 
 import com.lanou.mapper.ShopCartMapper;
 import com.lanou.model.ShopCart;
+import com.lanou.model.User;
 import com.lanou.service.ShopCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,8 +28,8 @@ public class ShopCartServiceImpl implements ShopCartService {
     }
 
     // 查看商品
-    public List viewShopCart(){
-      List list = shopCartMapper.viewShopCart();
+    public List viewShopCart(User user){
+      List list = shopCartMapper.viewShopCart(user);
         return list;
     }
 }
