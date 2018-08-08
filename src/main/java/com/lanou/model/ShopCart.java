@@ -1,5 +1,7 @@
 package com.lanou.model;
 
+import java.util.List;
+
 public class ShopCart {
     private Integer shopcartId;
 
@@ -12,6 +14,20 @@ public class ShopCart {
     private Integer isclick;
 
     private Integer isdel;
+
+    private List<Goods> goodsList;
+
+    public ShopCart() {
+        super();
+    }
+
+    public List<Goods> getGoodsList() {
+        return goodsList;
+    }
+
+    public void setGoodsList(List<Goods> goodsList) {
+        this.goodsList = goodsList;
+    }
 
     public Integer getShopcartId() {
         return shopcartId;
@@ -59,5 +75,18 @@ public class ShopCart {
 
     public void setIsdel(Integer isdel) {
         this.isdel = isdel;
+    }
+
+    @Override
+    public String toString() {
+        return "ShopCart{" +
+                "shopcartId=" + shopcartId +
+                ", shopcartSizeId=" + shopcartSizeId +
+                ", purchaseQuantity=" + purchaseQuantity +
+                ", status=" + status +
+                ", isclick=" + isclick +
+                ", isdel=" + isdel +
+                ", goodsList=" + goodsList +
+                '}';
     }
 }

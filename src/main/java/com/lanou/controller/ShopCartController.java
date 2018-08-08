@@ -45,6 +45,7 @@ public class ShopCartController {
     @ResponseBody
     public ServerResponse viewShopCart(){
         List list = shopCartService.viewShopCart();
+        System.out.println(list);
         if(list != null){
             return ServerResponse.createSuccess("查询成功",list);
         }

@@ -114,9 +114,13 @@
     insert into ml_shopCart (shopCart_size_id, purchase_quantity)
     values (#{sizeId}, #{quantity})
   </insert>
+
   <!-- 查看购物车 -->
   <resultMap id="resultMap" type="com.lanou.model.ShopCart">
-  <result column="purchase_quantity" property="purchaseQuantity" />
+    <id column="shopCart_id"  property="shopcartId" />
+    <result column="purchase_quantity" property="purchaseQuantity" />
+    <result column="isClick"  property="isclick" />
+    <result column="isDel"  property="isdel" />
     <collection ofType="com.lanou.model.Goods" property="goodsList">
       <result column="pic1" property="pic1" />
       <result column="goods_brand" property="goodsBrand" />
@@ -124,15 +128,15 @@
       <result column="goods_color" property="goodsColor" />
       <result column="goods_currentPrice" property="goodsCurrentprice" />
         <collection ofType="com.lanou.model.Size" property="sizes">
+          <id column="size_id" property="sizeId" />
           <result column="size_name" property="sizeName" />
           <result column="size_count" property="sizeCount" />
-
         </collection>
     </collection>
+
   </resultMap>
   <select id="viewShopCart" resultMap="resultMap">
-    select mg.pic1,mg.goods_brand,mg.goods_name,mg.goods_color,ms.size_name,ms.size_count,mg.goods_currentPrice,mc.purchase_quantity
+    select mc.shopCart_id,ms.size_id,mc.isClick,mc.isDel,mg.pic1,mg.goods_brand,mg.goods_name,mg.goods_color,ms.size_name,ms.size_count,mg.goods_currentPrice,mc.purchase_quantity
      from ml_goods mg,ml_size ms,ml_shopCart mc where mg.goods_id = ms.goods_size_id and ms.size_id=mc.shopCart_size_id
-
   </select>
 </mapper>
