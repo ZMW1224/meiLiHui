@@ -1,6 +1,7 @@
 package com.lanou.controller;
 
 import com.lanou.model.Goods;
+import com.lanou.model.ShopCart;
 import com.lanou.service.ShopCartService;
 import com.lanou.util.ServerResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +27,17 @@ public class ShopCartController {
         Map map = new HashMap();
         map.put("sizeId",sizeId);
         map.put("quantity",quantity);
-        int i = shopCartService.addGoodsToShopCart(map);
-        if (i>0){
-            return ServerResponse.createSuccess("添加成功",i);
+        // 查询购物车是否有相同的商品
+        ShopCart shopCart = shopCartService.selectGoodsByShopCart(map);
+        // 购物车没有相同的商品
+        if(shopCart == null){
+            int i = shopCartService.addGoodsToShopCart(map);
+            if (i>0){
+                return ServerResponse.createSuccess("添加成功",i);
+            }
         }
-        return  ServerResponse.createError(100,"添加失败");
+
+        return  ServerResponse.createError(100,"不能重复添加");
     }
 
     // 查看购物车
@@ -43,4 +50,5 @@ public class ShopCartController {
         }
             return ServerResponse.createError(100,"查询失败");
     }
+
 }

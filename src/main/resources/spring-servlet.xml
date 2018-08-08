@@ -38,6 +38,7 @@
 			<mvc:exclude-mapping path="/user/loginByPhone"></mvc:exclude-mapping>
 			<mvc:exclude-mapping path="/user/registerUser"></mvc:exclude-mapping>
 			<mvc:exclude-mapping path="/user/updateUserPwd"></mvc:exclude-mapping>
+			<mvc:exclude-mapping path="/user/uploadPic"></mvc:exclude-mapping>
 			<bean class="com.lanou.interceptor.Interceptor"></bean>
 		</mvc:interceptor>
 

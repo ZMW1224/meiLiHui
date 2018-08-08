@@ -17,9 +17,12 @@ public interface ShopCartMapper {
     int updateByPrimaryKeySelective(ShopCart record);
 
     int updateByPrimaryKey(ShopCart record);
+    // 查看购物车是否有相同商品
+    ShopCart selectGoodsByShopCart(Map map);
 
-    // 添加商品
+    // 添加购物车
     int addGoodsToShopCart(Map map);
-    // 查看购物车
+
+    // 查看商品
     List viewShopCart();
 }
