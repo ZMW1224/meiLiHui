@@ -148,9 +148,9 @@
 
     </resultMap>
     <select id="viewShopCart" resultMap="resultMap" parameterType="Map">
-    select mc.shopCart_user_id,mc.shopCart_id,ms.size_id,mc.isClick,mc.isDel,mg.pic1,mg.goods_brand,mg.goods_name,mg.goods_color,ms.size_name,ms.size_count,mg.goods_currentPrice,mc.purchase_quantity
-     from ml_goods mg,ml_size ms,ml_shopCart mc where mg.goods_id = ms.goods_size_id
-     and ms.size_id=mc.shopCart_size_id and mc.shopCart_user_id =#{userId}
+   select mc.shopCart_user_id,mc.shopCart_id,ms.size_id,mc.isClick,mc.isDel,mg.pic1,mg.goods_brand,mg.goods_name,mg.goods_color,ms.size_name,ms.size_count,mg.goods_currentPrice,mc.purchase_quantity
+    from ml_shopCart mc right join ml_size ms on ms.size_id=mc.shopCart_size_id right join ml_goods mg on mg.goods_id = ms.goods_size_id
+     where mc.shopCart_user_id =#{userId}
   </select>
 
     <!-- 改变购物车商品 -->

@@ -55,11 +55,11 @@ public class ShopCartController {
     public ServerResponse viewShopCart(HttpServletRequest request) {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user1");
-        Integer userId = user.getUserId();
+        //Integer userId = user.getUserId();
+        int userId=1;
         Map map = new HashMap();
         map.put("userId", userId);
         List list = shopCartService.viewShopCart(map);
-        System.out.println(list);
         if (list != null) {
             return ServerResponse.createSuccess("查询成功", list);
         }

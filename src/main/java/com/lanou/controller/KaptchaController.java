@@ -1,4 +1,5 @@
 package com.lanou.controller;
+
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
@@ -38,7 +39,7 @@ public class KaptchaController {
 
         // Set standard HTTP/1.1 no-cache headers.
         response.setHeader("Cache-Control",
-                  "no-store, no-cache, must-revalidate");
+                "no-store, no-cache, must-revalidate");
 
         // Set IE extended HTTP/1.1 no-cache headers (use addHeader).
         response.addHeader("Cache-Control", "post-check=0, pre-check=0");
