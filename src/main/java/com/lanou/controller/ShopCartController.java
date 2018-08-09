@@ -78,7 +78,6 @@ public class ShopCartController {
         map.put("quantity", quantity);
         map.put("userId", userId);
         int i = shopCartService.changeShopCartGoodsNum(map);
-        System.out.println(i);
         if (i > 0) {
             return ServerResponse.createSuccess("改变成功", i);
         }
