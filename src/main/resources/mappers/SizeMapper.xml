@@ -8,6 +8,7 @@
     <result column="goods_number" property="goodsNumber" jdbcType="VARCHAR" />
     <result column="size_count" property="sizeCount" jdbcType="INTEGER" />
     <result column="size_status" property="sizeStatus" jdbcType="INTEGER" />
+    <result column="is_click" property="isClick" />
   </resultMap>
   <resultMap id="BaseOnly" type="java.util.HashMap" >
     <!--<id column="size_id" property="sizeId" jdbcType="INTEGER" />-->
@@ -15,7 +16,7 @@
     <result column="size_count" property="sizeCount" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    size_id, size_name, goods_size_Id, goods_number, size_count, size_status
+    size_id, size_name, goods_size_Id, goods_number, size_count, size_status, is_click
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -112,5 +113,11 @@
     SELECT size_count,goods_number
     FROM ml_size
     WHERE goods_size_Id = #{goodsSizeId} AND size_name = #{sizeName}
+  </select>
+  <!--根据商品查找他的sizes -->
+  <select id="findSizes" resultMap="BaseOnly" parameterType="Integer">
+    SELECT * FROM ml_size
+    WHERE goods_size_Id = #{goodsSizeId}
+
   </select>
 </mapper>

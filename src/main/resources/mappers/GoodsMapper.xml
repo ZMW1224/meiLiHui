@@ -231,11 +231,24 @@
         <bind name="likename" value="'%'+_parameter+'%'" />
         #{likename}
     </select>
-    <!--商品详情-->
-    <select id="findGoodsInfo" resultMap="goodsToSize" parameterType="Goods">
+    <!--商品详情(作废)-->
+    <select id="findGoods" resultMap="goodsToSize" parameterType="Goods">
         select * FROM ml_goods g
         INNER JOIN ml_size s
-        on s.goods_size_Id=g.goods_id AND g.goods_id= #{goodsId}
+        on
+        s.goods_size_Id=g.goods_id AND g.goods_id= #{goodsId}
+    </select>
+    <!--商品详情-->
+    <select id="findGoodsInfo" resultMap="BaseResultMap" parameterType="Goods">
+        select * FROM ml_goods
+        WHERE
+        goods_id = #{goodsId}
+    </select>
+    <!--根据goods外键查找对应活动名-->
+    <select id="find activityName" resultType="String" resultMap="BaseResultMap">
+        SELECT active_name
+        FROM ml_activity
+        WHERE active_id = #{goodsActivityid}
     </select>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">

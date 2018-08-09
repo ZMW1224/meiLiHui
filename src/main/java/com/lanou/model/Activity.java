@@ -30,6 +30,9 @@ public class Activity {
 
     private List<Goods> goodsList;
 
+    private List goodsThirdtitle;
+    private List goodsBrand;
+
     public Activity() {
         super();
     }
@@ -50,7 +53,25 @@ public class Activity {
                 ", creatTime=" + creatTime +
                 ", activeBrand='" + activeBrand + '\'' +
                 ", goodsList=" + goodsList +
+                ", goodsThirdtitle=" + goodsThirdtitle +
+                ", goodsBrand=" + goodsBrand +
                 '}';
+    }
+
+    public List getGoodsThirdtitle() {
+        return goodsThirdtitle;
+    }
+
+    public void setGoodsThirdtitle(List goodsThirdtitle) {
+        this.goodsThirdtitle = goodsThirdtitle;
+    }
+
+    public List getGoodsBrand() {
+        return goodsBrand;
+    }
+
+    public void setGoodsBrand(List goodsBrand) {
+        this.goodsBrand = goodsBrand;
     }
 
     public Integer getActiveId() {

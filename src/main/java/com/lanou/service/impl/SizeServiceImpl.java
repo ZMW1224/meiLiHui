@@ -22,4 +22,10 @@ public class SizeServiceImpl implements SizeService {
         Map<String,Object> map = sizeMapper.findCountAndNumByGoodsId(size);
         return map;
     }
+
+    // 找到所属商品有哪些尺码  goodsInfo用
+    public List<Size> findSizes(Integer goodsSizeId){
+        List<Size> sizeList = sizeMapper.findSizes(goodsSizeId);
+        return  sizeList;
+    }
 }

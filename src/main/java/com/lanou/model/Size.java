@@ -13,6 +13,8 @@ public class Size {
 
     private Integer sizeStatus;
 
+    private Integer isClick;
+
     public Integer getSizeId() {
         return sizeId;
     }
@@ -59,5 +61,26 @@ public class Size {
 
     public void setSizeStatus(Integer sizeStatus) {
         this.sizeStatus = sizeStatus;
+    }
+
+    public Integer getIsClick() {
+        return isClick;
+    }
+
+    public void setIsClick(Integer isClick) {
+        this.isClick = isClick;
+    }
+
+    @Override
+    public String toString() {
+        return "Size{" +
+                "sizeId=" + sizeId +
+                ", sizeName='" + sizeName + '\'' +
+                ", goodsSizeId=" + goodsSizeId +
+                ", goodsNumber='" + goodsNumber + '\'' +
+                ", sizeCount=" + sizeCount +
+                ", sizeStatus=" + sizeStatus +
+                ", isClick=" + isClick +
+                '}';
     }
 }

@@ -10,4 +10,5 @@ import java.util.Map;
  */
 public interface SizeService {
     Map<String,Object> findCountAndNumByGoodsId(Size size);
+    List<Size> findSizes(Integer goodsSizeId);
 }
