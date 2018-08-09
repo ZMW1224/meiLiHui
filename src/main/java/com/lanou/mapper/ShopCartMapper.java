@@ -23,6 +23,7 @@ public interface ShopCartMapper {
 
     int addGoodsToShopCart(Map map);
 
+    // 查看购物车
     List viewShopCart(Map map);
 
     int updateByStatusAndId(Integer shopCart);
@@ -33,6 +34,7 @@ public interface ShopCartMapper {
 
     List viewShopCartToOrder();
 
-
+    // 改变购物车商品数量
+    int changeShopCartGoodsNum(Map map);
 
 }

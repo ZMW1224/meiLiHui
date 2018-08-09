@@ -153,6 +153,12 @@
      and ms.size_id=mc.shopCart_size_id and mc.shopCart_user_id =#{userId}
   </select>
 
+    <!-- 改变购物车商品 -->
+
+    <update id="changeShopCartGoodsNum" parameterType="Map">
+    update ml_shopCart set purchase_quantity = #{quantity} where shopCart_id = #{shopCartId} and shopCart_user_id = #{userId}
+    </update>
+
     <!--点击商品选框改变状态-->
     <update id="updateByStatusAndId" parameterType="com.lanou.model.ShopCart">
     update ml_shopCart set
