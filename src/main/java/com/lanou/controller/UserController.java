@@ -25,6 +25,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 @Controller
 @CrossOrigin
@@ -147,6 +148,25 @@ public class UserController {
         return ServerResponse.createError(100, "修改失败");
     }
 
+    // 上传头像
+    @ResponseBody
+    @RequestMapping("/uploadPic")
+    public ServerResponse uploadPic(MultipartFile img) throws IOException {
+        // 图片原名称
+        // System.out.println("name:" + ajaxImg.getOriginalFilename());
+        String originalFilename = img.getOriginalFilename();
 
+        // 新名称(uuid随机数加上后缀名)
+        String newfileName = UUID.randomUUID()+ originalFilename.substring(originalFilename.lastIndexOf("."));
+        // 上传地址
+        String path = "/Users/lanou/apache-tomcat-9.0.0.M26/webapps/ROOT/resource/" + newfileName;
+        File file = new File(path);
+        // 把内存图片写入磁盘中
+        img.transferTo(file);
+        // 图片回显
+        String imgPath = "http://localhost:8080/resource/" + newfileName;
+        return ServerResponse.createSuccess("上传成功", imgPath);
+
+    }
 
 }

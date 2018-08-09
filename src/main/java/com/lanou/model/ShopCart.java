@@ -11,7 +11,27 @@ public class ShopCart {
 
     private Integer status;
 
+    private Integer isclick;
+
+    private Integer isdel;
+
+    private Integer shopcartUserId;
+
     private List<Goods> goodsList;
+
+    @Override
+    public String toString() {
+        return "ShopCart{" +
+                "shopcartId=" + shopcartId +
+                ", shopcartSizeId=" + shopcartSizeId +
+                ", purchaseQuantity=" + purchaseQuantity +
+                ", status=" + status +
+                ", isclick=" + isclick +
+                ", isdel=" + isdel +
+                ", shopcartUserId=" + shopcartUserId +
+                ", goodsList=" + goodsList +
+                '}';
+    }
 
     public ShopCart() {
         super();
@@ -57,14 +77,27 @@ public class ShopCart {
         this.status = status;
     }
 
-    @Override
-    public String toString() {
-        return "ShopCart{" +
-                "shopcartId=" + shopcartId +
-                ", shopcartSizeId=" + shopcartSizeId +
-                ", purchaseQuantity=" + purchaseQuantity +
-                ", status=" + status +
-                ", goodsList=" + goodsList +
-                '}';
+    public Integer getIsclick() {
+        return isclick;
+    }
+
+    public void setIsclick(Integer isclick) {
+        this.isclick = isclick;
+    }
+
+    public Integer getIsdel() {
+        return isdel;
+    }
+
+    public void setIsdel(Integer isdel) {
+        this.isdel = isdel;
+    }
+
+    public Integer getShopcartUserId() {
+        return shopcartUserId;
+    }
+
+    public void setShopcartUserId(Integer shopcartUserId) {
+        this.shopcartUserId = shopcartUserId;
     }
 }

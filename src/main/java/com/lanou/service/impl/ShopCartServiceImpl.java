@@ -1,6 +1,8 @@
 package com.lanou.service.impl;
 
 import com.lanou.mapper.ShopCartMapper;
+import com.lanou.model.ShopCart;
+import com.lanou.model.User;
 import com.lanou.service.ShopCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,11 @@ public class ShopCartServiceImpl implements ShopCartService {
 
     @Autowired
     private ShopCartMapper shopCartMapper;
+    // 查看购物车是否有相同的商品
+    public ShopCart selectGoodsByShopCart(Map map){
+      ShopCart shopCart = shopCartMapper.selectGoodsByShopCart(map);
+      return shopCart;
+    }
 
     // 添加商品
     public int addGoodsToShopCart(Map map){
@@ -21,8 +28,8 @@ public class ShopCartServiceImpl implements ShopCartService {
     }
 
     // 查看商品
-    public List viewShopCart(){
-      List list = shopCartMapper.viewShopCart();
+    public List viewShopCart(User user){
+      List list = shopCartMapper.viewShopCart(user);
         return list;
     }
 }
