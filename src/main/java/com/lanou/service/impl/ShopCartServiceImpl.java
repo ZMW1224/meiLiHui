@@ -28,8 +28,30 @@ public class ShopCartServiceImpl implements ShopCartService {
     }
 
     // 查看商品
-    public List viewShopCart(User user){
-      List list = shopCartMapper.viewShopCart(user);
+    public List viewShopCart(Map map){
+        List list = shopCartMapper.viewShopCart(map);
         return list;
     }
+
+    //单个删除商品
+    public Integer deleteByPrimaryKey(Integer id){
+        int i = shopCartMapper.deleteByPrimaryKey(id);
+        return i;
+    }
+    //单个改变商品的状态
+    public Integer updateByStatusAndId(Integer shopCart){
+        int i = shopCartMapper.updateByStatusAndId(shopCart);
+        return i;
+    }
+    //一次性改变商品的状态
+    public Integer updateByStatus(Integer status){
+        int i = shopCartMapper.updateByStatus(status);
+        return i;
+    }
+    //删除选中状态的商品status为1的
+    public Integer delectByStatus(){
+        int i = shopCartMapper.delectByStatus();
+        return i;
+    }
+
 }

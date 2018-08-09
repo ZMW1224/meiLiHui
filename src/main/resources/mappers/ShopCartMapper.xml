@@ -152,4 +152,25 @@
      from ml_goods mg,ml_size ms,ml_shopCart mc where mg.goods_id = ms.goods_size_id
      and ms.size_id=mc.shopCart_size_id and mc.shopCart_user_id =#{userId}
   </select>
+
+    <!--点击商品选框改变状态-->
+    <update id="updateByStatusAndId" parameterType="com.lanou.model.ShopCart">
+    update ml_shopCart set
+    status = #{status,jdbcType=INTEGER}
+    where shopCart_id = #{shopcartId,jdbcType=INTEGER}
+  </update>
+
+    <!--点击全选一次性改变商品状态-->
+    <update id="updateByStatus" parameterType="int">
+    update ml_shopCart set
+    status = #{id}
+    where 1=1
+  </update>
+
+    <!--删除选中的商品就是status为1-->
+    <delete id="delectByStatus" parameterType="com.lanou.model.ShopCart">
+    delete from ml_shopCart
+    where status=1
+  </delete>
+
 </mapper>
