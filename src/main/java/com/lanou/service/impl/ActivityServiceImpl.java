@@ -21,4 +21,25 @@ public class ActivityServiceImpl implements ActivityService {
         return primaryTitleList;
     }
 
+
+
+
+
+    // 查看所有活动
+    public List<Activity> findAllActivity(){
+        List<Activity> activityList = activityMapper.findAllActivity();
+        return  activityList;
+    }
+
+    // 添加新活动(卖家版) 返回1or0 1则成功
+    public int insertSelective(Activity activity){
+        int isSuccess = activityMapper.insertSelective(activity);
+        return isSuccess;
+    }
+
+    // 修改更新活动(卖家版) 返回1or0 1则成功
+    public int updateByPrimaryKeySelective(Activity activity){
+        int isSuccess = activityMapper.updateByPrimaryKeySelective(activity);
+        return isSuccess;
+    }
 }

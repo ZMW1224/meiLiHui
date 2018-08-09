@@ -41,6 +41,9 @@
       #{activeStatus,jdbcType=INTEGER}, #{creatTime,jdbcType=TIMESTAMP}, #{activeBrand,jdbcType=VARCHAR}
       )
   </insert>
+
+  <!--卖家、后台管理系统-->
+  <!--添加活动-->
   <insert id="insertSelective" parameterType="com.lanou.model.Activity">
     insert into ml_activity
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -120,6 +123,8 @@
       </if>
     </trim>
   </insert>
+  <!--卖家、后台管理系统-->
+  <!--修改更新活动-->
   <update id="updateByPrimaryKeySelective" parameterType="com.lanou.model.Activity">
     update ml_activity
     <set>
@@ -178,5 +183,10 @@
   <select id="findByActivePrimaryTitle" parameterType="String" resultMap="BaseResultMap">
     select * from ml_activity where
      active_primaryTitle = #{activePrimarytitle,jdbcType=VARCHAR}
+  </select>
+  <!--卖家、后台管理系统-->
+  <!--浏览所有活动-->
+  <select id="findAllActivity" resultMap="BaseResultMap">
+    SELECT * FROM ml_activity
   </select>
 </mapper>

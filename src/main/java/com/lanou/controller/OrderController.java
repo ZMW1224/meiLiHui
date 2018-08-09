@@ -31,22 +31,5 @@ public class OrderController {
         return ServerResponse.createError(100,"添加失败");
     }
 
-    @ResponseBody
-    @RequestMapping("/selectOrder")
-    //查询订单表的数据
-    public ServerResponse selectOrder(){
-        List orders = orderService.selectOrder();
-        //调用ShopCartController层购物车信息展示方法
-        List list = shopCartService.viewShopCart();
-        System.out.println(list);
-        //创建map集合
-        Map map = new HashMap();
-        map.put("Order",orders);
-        map.put("Cart",list);
-        System.out.println(map);
-        if (map.size()>0){
-            return ServerResponse.createSuccess("订单信息查询成功",map);
-        }
-        return ServerResponse.createError(100,"查询失败");
-    }
+
 }

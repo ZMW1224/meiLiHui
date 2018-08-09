@@ -32,4 +32,17 @@ public class CategoryController {
             return ServerResponse.createSuccess("查询成功", categoryList);
         }
     }
+
+
+
+
+
+
+
+
+    /*
+    * 卖家版
+    * 后台管理系统路由
+    * */
+
 }
