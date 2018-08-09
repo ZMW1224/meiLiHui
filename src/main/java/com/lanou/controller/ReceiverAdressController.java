@@ -29,7 +29,7 @@ public class ReceiverAdressController {
     public ServerResponse addReceiverAdress(ReceiverAdress receiverAdress, HttpServletRequest request) {
         // 取出当前用户信息
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
+        User user = (User) session.getAttribute("user1");
         // 获取当前用户的id
         Integer id = user.getUserId();
         // 存到receiverAdress中
@@ -59,7 +59,7 @@ public class ReceiverAdressController {
                 return ServerResponse.createSuccess("设置成功", "");
             }
         }
-        return ServerResponse.createError(100,"设置失败");
+        return ServerResponse.createError(100, "设置失败");
     }
 }
 

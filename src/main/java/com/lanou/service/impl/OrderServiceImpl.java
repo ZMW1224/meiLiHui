@@ -17,7 +17,6 @@ public class OrderServiceImpl implements OrderService {
         int i = orderMapper.insert(order);
         return i;
     }
-
     //查询订单信息
     public List selectOrder(){
         List<Order> list = orderMapper.selectOrder();

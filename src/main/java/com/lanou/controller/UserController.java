@@ -155,18 +155,22 @@ public class UserController {
         // 图片原名称
         // System.out.println("name:" + ajaxImg.getOriginalFilename());
         String originalFilename = img.getOriginalFilename();
-
-        // 新名称(uuid随机数加上后缀名)
-        String newfileName = UUID.randomUUID()+ originalFilename.substring(originalFilename.lastIndexOf("."));
-        // 上传地址
-        String path = "/Users/lanou/apache-tomcat-9.0.0.M26/webapps/ROOT/resource/" + newfileName;
-        File file = new File(path);
-        // 把内存图片写入磁盘中
-        img.transferTo(file);
-        // 图片回显
-        String imgPath = "http://localhost:8080/resource/" + newfileName;
-        return ServerResponse.createSuccess("上传成功", imgPath);
-
+        // 判断是否为图片
+        String[] split = originalFilename.split("\\.");
+        String s = split[split.length - 1];
+        if(s.equalsIgnoreCase("jpg") || s.equalsIgnoreCase("png") || s.equalsIgnoreCase("jpeg")) {
+            // 新名称(uuid随机数加上后缀名)
+            String newfileName = UUID.randomUUID() + originalFilename.substring(originalFilename.lastIndexOf("."));
+            // 上传地址
+            String path = "/Users/lanou/apache-tomcat-9.0.0.M26/webapps/ROOT/resource/" + newfileName;
+            File file = new File(path);
+            // 把内存图片写入磁盘中
+            img.transferTo(file);
+            // 图片回显
+            String imgPath = "http://localhost:8080/resource/" + newfileName;
+            return ServerResponse.createSuccess("上传成功", imgPath);
+        }
+        return ServerResponse.createError(100,"上传失败");
     }
 
 }
