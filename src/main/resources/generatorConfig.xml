@@ -63,6 +63,6 @@
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
         <!-- 设置想要将哪个表生成对应的文件 -->
-        <table tableName="ml_size" domainObjectName="Size" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="ml_order" domainObjectName="Order" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
     </context>
 </generatorConfiguration>

@@ -5,19 +5,70 @@ import java.util.List;
 public class Order {
     private Integer orderId;
 
-    private Integer orderReceiveradressStatus;
+    private Integer orderReceiveradressId;
 
-    private String payment;
-
-    private Integer orderShopcart;
+    private Integer orderShopcartStatus;
 
     private Integer invoiceType;
 
     private String personCompany;
 
+    private Integer orderUserId;
+
+    private String orderNumber;
+
+    private List<ReceiverAdress> adressList;
+
     private List<ShopCart> cartList;
 
-    private ReceiverAdress receiverAdress;
+    private List<Goods> goodsList;
+
+    private List<Size> sizes;
+
+    public Order() {
+        super();
+    }
+
+    public List<Goods> getGoodsList() {
+        return goodsList;
+    }
+
+    public void setGoodsList(List<Goods> goodsList) {
+        this.goodsList = goodsList;
+    }
+
+    public List<Size> getSizes() {
+        return sizes;
+    }
+
+    public void setSizes(List<Size> sizes) {
+        this.sizes = sizes;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId=" + orderId +
+                ", orderReceiveradressId=" + orderReceiveradressId +
+                ", orderShopcartStatus=" + orderShopcartStatus +
+                ", invoiceType=" + invoiceType +
+                ", personCompany='" + personCompany + '\'' +
+                ", orderUserId=" + orderUserId +
+                ", orderNumber=" + orderNumber +
+                ", adressList=" + adressList +
+                ", cartList=" + cartList +
+                ", goodsList=" + goodsList +
+                ", sizes=" + sizes +
+                '}';
+    }
+
+    public List<ReceiverAdress> getAdressList() {
+        return adressList;
+    }
+
+    public void setAdressList(List<ReceiverAdress> adressList) {
+        this.adressList = adressList;
+    }
 
     public List<ShopCart> getCartList() {
         return cartList;
@@ -35,28 +86,20 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public Integer getOrderReceiveradressStatus() {
-        return orderReceiveradressStatus;
+    public Integer getOrderReceiveradressId() {
+        return orderReceiveradressId;
     }
 
-    public void setOrderReceiveradressStatus(Integer orderReceiveradressStatus) {
-        this.orderReceiveradressStatus = orderReceiveradressStatus;
+    public void setOrderReceiveradressId(Integer orderReceiveradressId) {
+        this.orderReceiveradressId = orderReceiveradressId;
     }
 
-    public String getPayment() {
-        return payment;
+    public Integer getOrderShopcartStatus() {
+        return orderShopcartStatus;
     }
 
-    public void setPayment(String payment) {
-        this.payment = payment == null ? null : payment.trim();
-    }
-
-    public Integer getOrderShopcart() {
-        return orderShopcart;
-    }
-
-    public void setOrderShopcart(Integer orderShopcart) {
-        this.orderShopcart = orderShopcart;
+    public void setOrderShopcartStatus(Integer orderShopcartStatus) {
+        this.orderShopcartStatus = orderShopcartStatus;
     }
 
     public Integer getInvoiceType() {
@@ -75,29 +118,19 @@ public class Order {
         this.personCompany = personCompany == null ? null : personCompany.trim();
     }
 
-    public ReceiverAdress getReceiverAdress() {
-        return receiverAdress;
+    public Integer getOrderUserId() {
+        return orderUserId;
     }
 
-    public void setReceiverAdress(ReceiverAdress receiverAdress) {
-        this.receiverAdress = receiverAdress;
+    public void setOrderUserId(Integer orderUserId) {
+        this.orderUserId = orderUserId;
     }
 
-    public Order() {
-        super();
+    public String getOrderNumber() {
+        return orderNumber;
     }
 
-    @Override
-    public String toString() {
-        return "Order{" +
-                "orderId=" + orderId +
-                ", orderReceiveradressStatus=" + orderReceiveradressStatus +
-                ", payment='" + payment + '\'' +
-                ", orderShopcart=" + orderShopcart +
-                ", invoiceType=" + invoiceType +
-                ", personCompany='" + personCompany + '\'' +
-                ", cartList=" + cartList +
-                ", receiverAdress=" + receiverAdress +
-                '}';
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber;
     }
 }
