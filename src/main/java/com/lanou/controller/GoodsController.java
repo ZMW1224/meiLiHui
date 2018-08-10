@@ -75,6 +75,7 @@ public class GoodsController {
         PageHelper.startPage(pages, 8);
         System.out.println("传入的条件：" + goods);
         Activity activity = goodsService.findGoodsListByActibityId(goods);
+
         System.out.println("activity:" + activity);
         if (activity != null) {
             // 从活动中取出对应商品作分页

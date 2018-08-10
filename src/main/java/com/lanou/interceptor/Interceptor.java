@@ -36,20 +36,23 @@ public class Interceptor implements HandlerInterceptor
                         userPhone = split[0];
                         password = split[1];
 
+                        // 自动登录
+                        UserLoginService service = new UserLoginServiceImpl();
+                        User u = new User();
+                        u.setUserPhone(userPhone);
+                        u.setUserPassword(password);
+                        User findUser = service.loginByPhone(user);
+                        if(findUser != null) {
+                            // 进行自动登录 把值放入session中
+                            request.getSession().setAttribute("user1", findUser);
+                        }
+
                     }
                 }
             }
-            // 自动登录
-            UserLoginService service = new UserLoginServiceImpl();
-            User u = new User();
-            u.setUserPhone(userPhone);
-            u.setUserPassword(password);
-            User findUser = service.loginByPhone(user);
-            if(findUser != null) {
-                // 进行自动登录 把值放入session中
-                request.getSession().setAttribute("user1", findUser);
-            }
+
         }
+
             return true;
     }
 
