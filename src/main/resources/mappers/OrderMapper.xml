@@ -1,138 +1,166 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.lanou.mapper.OrderMapper" >
-  <resultMap id="BaseResultMap" type="com.lanou.model.Order" >
-    <id column="order_id" property="orderId" jdbcType="INTEGER" />
-    <result column="order__receiverAdress_status" property="orderReceiveradressStatus" jdbcType="INTEGER" />
-    <result column="payment" property="payment" jdbcType="VARCHAR" />
-    <result column="order_shopCart" property="orderShopcart" jdbcType="INTEGER" />
-    <result column="invoice_type" property="invoiceType" jdbcType="INTEGER" />
-    <result column="person_company" property="personCompany" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    order_id, order__receiverAdress_status, payment, order_shopCart, invoice_type, person_company
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanou.mapper.OrderMapper">
+    <resultMap id="BaseResultMap" type="com.lanou.model.Order">
+        <id column="order_id" jdbcType="INTEGER" property="orderId"/>
+        <result column="order__receiverAdress_id" jdbcType="INTEGER" property="orderReceiveradressId"/>
+        <result column="order_shopCart_status" jdbcType="INTEGER" property="orderShopcartStatus"/>
+        <result column="invoice_type" jdbcType="INTEGER" property="invoiceType"/>
+        <result column="person_company" jdbcType="VARCHAR" property="personCompany"/>
+        <result column="order_user_id" jdbcType="INTEGER" property="orderUserId"/>
+        <result column="order_number" jdbcType="VARCHAR" property="orderNumber"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    order_id, order__receiverAdress_id, order_shopCart_status, invoice_type, person_company, 
+    order_user_id, order_number
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from ml_order
-    where order_id = #{orderId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ml_order
+        where order_id = #{orderId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from ml_order
     where order_id = #{orderId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.lanou.model.Order" >
-    insert into ml_order (order_id, order__receiverAdress_status, 
-      payment, order_shopCart, invoice_type, 
-      person_company)
-    values (#{orderId,jdbcType=INTEGER}, #{orderReceiveradressStatus,jdbcType=INTEGER}, 
-      #{payment,jdbcType=VARCHAR}, #{orderShopcart,jdbcType=INTEGER}, #{invoiceType,jdbcType=INTEGER}, 
-      #{personCompany,jdbcType=VARCHAR})
+    <insert id="insert" parameterType="Map">
+    insert into ml_order (order__receiverAdress_id, order_shopCart_status,
+      order_user_id, order_number)
+    values (#{orderReceiveradressId}, #{orderShopcartStatus},
+      #{orderUserId},#{orderNumber})
   </insert>
-  <insert id="insertSelective" parameterType="com.lanou.model.Order" >
-    insert into ml_order
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="orderId != null" >
-        order_id,
-      </if>
-      <if test="orderReceiveradressStatus != null" >
-        order__receiverAdress_status,
-      </if>
-      <if test="payment != null" >
-        payment,
-      </if>
-      <if test="orderShopcart != null" >
-        order_shopCart,
-      </if>
-      <if test="invoiceType != null" >
-        invoice_type,
-      </if>
-      <if test="personCompany != null" >
-        person_company,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="orderId != null" >
-        #{orderId,jdbcType=INTEGER},
-      </if>
-      <if test="orderReceiveradressStatus != null" >
-        #{orderReceiveradressStatus,jdbcType=INTEGER},
-      </if>
-      <if test="payment != null" >
-        #{payment,jdbcType=VARCHAR},
-      </if>
-      <if test="orderShopcart != null" >
-        #{orderShopcart,jdbcType=INTEGER},
-      </if>
-      <if test="invoiceType != null" >
-        #{invoiceType,jdbcType=INTEGER},
-      </if>
-      <if test="personCompany != null" >
-        #{personCompany,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lanou.model.Order" >
+    <insert id="insertSelective" parameterType="com.lanou.model.Order">
+        insert into ml_order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderId != null">
+                order_id,
+            </if>
+            <if test="orderReceiveradressId != null">
+                order__receiverAdress_id,
+            </if>
+            <if test="orderShopcartStatus != null">
+                order_shopCart_status,
+            </if>
+            <if test="invoiceType != null">
+                invoice_type,
+            </if>
+            <if test="personCompany != null">
+                person_company,
+            </if>
+            <if test="orderUserId != null">
+                order_user_id,
+            </if>
+            <if test="orderNumber != null">
+                order_number,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderId != null">
+                #{orderId,jdbcType=INTEGER},
+            </if>
+            <if test="orderReceiveradressId != null">
+                #{orderReceiveradressId,jdbcType=INTEGER},
+            </if>
+            <if test="orderShopcartStatus != null">
+                #{orderShopcartStatus,jdbcType=INTEGER},
+            </if>
+            <if test="invoiceType != null">
+                #{invoiceType,jdbcType=INTEGER},
+            </if>
+            <if test="personCompany != null">
+                #{personCompany,jdbcType=VARCHAR},
+            </if>
+            <if test="orderUserId != null">
+                #{orderUserId,jdbcType=INTEGER},
+            </if>
+            <if test="orderNumber != null">
+                #{orderNumber,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lanou.model.Order">
+        update ml_order
+        <set>
+            <if test="orderReceiveradressId != null">
+                order__receiverAdress_id = #{orderReceiveradressId,jdbcType=INTEGER},
+            </if>
+            <if test="orderShopcartStatus != null">
+                order_shopCart_status = #{orderShopcartStatus,jdbcType=INTEGER},
+            </if>
+            <if test="invoiceType != null">
+                invoice_type = #{invoiceType,jdbcType=INTEGER},
+            </if>
+            <if test="personCompany != null">
+                person_company = #{personCompany,jdbcType=VARCHAR},
+            </if>
+            <if test="orderUserId != null">
+                order_user_id = #{orderUserId,jdbcType=INTEGER},
+            </if>
+            <if test="orderNumber != null">
+                order_number = #{orderNumber,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where order_id = #{orderId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lanou.model.Order">
     update ml_order
-    <set >
-      <if test="orderReceiveradressStatus != null" >
-        order__receiverAdress_status = #{orderReceiveradressStatus,jdbcType=INTEGER},
-      </if>
-      <if test="payment != null" >
-        payment = #{payment,jdbcType=VARCHAR},
-      </if>
-      <if test="orderShopcart != null" >
-        order_shopCart = #{orderShopcart,jdbcType=INTEGER},
-      </if>
-      <if test="invoiceType != null" >
-        invoice_type = #{invoiceType,jdbcType=INTEGER},
-      </if>
-      <if test="personCompany != null" >
-        person_company = #{personCompany,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where order_id = #{orderId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.lanou.model.Order" >
-    update ml_order
-    set order__receiverAdress_status = #{orderReceiveradressStatus,jdbcType=INTEGER},
-      payment = #{payment,jdbcType=VARCHAR},
-      order_shopCart = #{orderShopcart,jdbcType=INTEGER},
+    set order__receiverAdress_id = #{orderReceiveradressId,jdbcType=INTEGER},
+      order_shopCart_status = #{orderShopcartStatus,jdbcType=INTEGER},
       invoice_type = #{invoiceType,jdbcType=INTEGER},
-      person_company = #{personCompany,jdbcType=VARCHAR}
+      person_company = #{personCompany,jdbcType=VARCHAR},
+      order_user_id = #{orderUserId,jdbcType=INTEGER},
+      order_number = #{orderNumber,jdbcType=VARCHAR}
     where order_id = #{orderId,jdbcType=INTEGER}
   </update>
-  <!--查看订单页面-->
-  <resultMap id="selectOrder" type="com.lanou.model.Order" >
-    <id column="order_id" property="orderId" jdbcType="INTEGER" />
-    <result column="order__receiverAdress_status" property="orderReceiveradressStatus" jdbcType="INTEGER" />
-    <result column="payment" property="payment" jdbcType="VARCHAR" />
-    <result column="order_shopCart" property="orderShopcart" jdbcType="INTEGER" />
-    <result column="invoice_type" property="invoiceType" jdbcType="INTEGER" />
-    <result column="person_company" property="personCompany" jdbcType="VARCHAR" />
-    <collection property="receiverAdress" ofType="com.lanou.model.ReceiverAdress">
-      <id column="receiver_id" property="receiverId" jdbcType="INTEGER" />
-      <result column="receiver_name" property="receiverName" jdbcType="VARCHAR" />
-      <result column="receiver_phone" property="receiverPhone" jdbcType="VARCHAR" />
-      <result column="province" property="province" jdbcType="VARCHAR" />
-      <result column="city" property="city" jdbcType="VARCHAR" />
-      <result column="county" property="county" jdbcType="VARCHAR" />
-      <result column=" detailed_address" property="detailedAddress" jdbcType="VARCHAR" />
-      <result column="postal_code" property="postalCode" jdbcType="VARCHAR" />
-      <result column="user_receiver_id" property="userReceiverId" jdbcType="INTEGER" />
-      <result column="status" property="status" jdbcType="INTEGER" />
-    </collection>
-    <collection property="cartList" ofType="com.lanou.model.ShopCart">
-      <id column="shopCart_id" property="shopcartId" jdbcType="INTEGER" />
-      <result column="shopCart_size_id" property="shopcartSizeId" jdbcType="INTEGER" />
-      <result column="purchase_quantity" property="purchaseQuantity" jdbcType="INTEGER" />
-      <result column="status" property="status" jdbcType="INTEGER" />
-    </collection>
-  </resultMap>
-  <!--订单页面显示-->
-  <select id="selectOrder" parameterType="com.lanou.model.Order" resultMap="selectOrder">
-    select * from ml_order mo,ml_shopCart ms, ml_receiverAdress mrA
-    where mo.order__receiverAdress_status=mrA.status and mo.order_shopCart=ms.status
+    <!--查看订单页面-->
+    <resultMap id="selectOrder" type="com.lanou.model.ReceiverAdress">
+        <id column="receiver_id" property="receiverId" jdbcType="INTEGER"/>
+        <result column="receiver_name" property="receiverName" jdbcType="VARCHAR"/>
+        <result column="receiver_phone" property="receiverPhone" jdbcType="VARCHAR"/>
+        <result column="province" property="province" jdbcType="VARCHAR"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="county" property="county" jdbcType="VARCHAR"/>
+        <result column=" detailed_address" property="detailedAddress" jdbcType="VARCHAR"/>
+        <result column="postal_code" property="postalCode" jdbcType="VARCHAR"/>
+        <result column="user_receiver_id" property="userReceiverId" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+    </resultMap>
+    <!--查询地址-->
+    <select id="selectReceiverAdress" resultMap="selectOrder">
+     select * from ml_receiverAdress
+   </select>
+
+    <!-- 查看订单商品 -->
+    <resultMap id="resultMap" type="com.lanou.model.ShopCart">
+        <id column="shopCart_id" property="shopcartId"/>
+        <result column="purchase_quantity" property="purchaseQuantity"/>
+        <result column="shopCart_user_id" property="shopcartUserId"/>
+        <result column="isClick" property="isclick"/>
+        <result column="isDel" property="isdel"/>
+        <collection ofType="com.lanou.model.Goods" property="goodsList">
+            <result column="pic1" property="pic1"/>
+            <result column="goods_brand" property="goodsBrand"/>
+            <result column="goods_name" property="goodsName"/>
+            <result column="goods_color" property="goodsColor"/>
+            <result column="goods_currentPrice" property="goodsCurrentprice"/>
+            <collection ofType="com.lanou.model.Size" property="sizes">
+                <id column="size_id" property="sizeId"/>
+                <result column="size_name" property="sizeName"/>
+                <result column="size_count" property="sizeCount"/>
+            </collection>
+        </collection>
+    </resultMap>
+    <select id="viewShopCartOnOrder" resultMap="resultMap" parameterType="int">
+   select mc.shopCart_user_id,mc.shopCart_id,ms.size_id,mc.isClick,mc.isDel,mg.pic1,mg.goods_brand,mg.goods_name,mg.goods_color,ms.size_name,ms.size_count,mg.goods_currentPrice,mc.purchase_quantity
+    from ml_shopCart mc right join ml_size ms on ms.size_id=mc.shopCart_size_id right join ml_goods mg on mg.goods_id = ms.goods_size_id
+     where mc.shopCart_user_id =#{userId} and mc.status=1
   </select>
+
+    <!--改变收货地址-->
+    <update id="updatePlaceReceipt" parameterType="int">
+        update ml_order,ml_receiverAdress mrA set order__receiverAdress_id = #{orderReceiveradressId,jdbcType=INTEGER}
+        where order__receiverAdress_id = mrA.receiver_id
+    </update>
+
 </mapper>

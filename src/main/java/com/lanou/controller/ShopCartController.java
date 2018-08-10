@@ -46,6 +46,7 @@ public class ShopCartController {
             }
         }
 
+
         return ServerResponse.createError(100, "不能重复添加");
     }
 
@@ -84,8 +85,7 @@ public class ShopCartController {
         return ServerResponse.createError(100, "改变失败");
     }
 
-
-    //单个删除商品
+    //单个删除商品`
     @RequestMapping("/deleteByPrimaryKey")
     @ResponseBody
     public ServerResponse deleteByPrimaryKey(Integer id) {
@@ -121,7 +121,6 @@ public class ShopCartController {
             return ServerResponse.createError(100, "改变失败");
         }
     }
-
     //一次性改变商品的状态
     @RequestMapping("/updateByStatus")
     @ResponseBody
@@ -148,7 +147,6 @@ public class ShopCartController {
         }
 
     }
-
     //删除状态为1的商品
     @RequestMapping("/delectByStatus")
     @ResponseBody

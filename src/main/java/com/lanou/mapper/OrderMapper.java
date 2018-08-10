@@ -3,11 +3,12 @@ package com.lanou.mapper;
 import com.lanou.model.Order;
 
 import java.util.List;
+import java.util.Map;
 
 public interface OrderMapper {
     int deleteByPrimaryKey(Integer orderId);
-    //向订单中添加数据
-    int insert(Order record);
+
+    int insert(Map map);
 
     int insertSelective(Order record);
 
@@ -16,6 +17,11 @@ public interface OrderMapper {
     int updateByPrimaryKeySelective(Order record);
 
     int updateByPrimaryKey(Order record);
-    //查询订单
-    List<Order> selectOrder();
+    //查看地址
+     List selectReceiverAdress();
+
+     List viewShopCartOnOrder(Integer map);
+
+     int updatePlaceReceipt(Integer id);
+
 }
